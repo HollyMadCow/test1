@@ -26,13 +26,16 @@ public class search extends HttpServlet {
     //服务器端代码
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+//        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/x-json");
         PrintWriter out = response.getWriter();
         try {
             String searchkeyword = request.getParameter("keyword");
+//            String teststring = String.format("{'name':%s}",searchkeyword);
             if (searchkeyword == null) {
                 out.println("用户名不能为空");
             } else {
+
                 out.println(searchkeyword);
 //                response.getWriter().println(searchkeyword);
 //                RequestDispatcher de=request.getRequestDispatcher("/pki/search.jsp");
