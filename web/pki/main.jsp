@@ -31,6 +31,12 @@
         }
     }
     </script>
+    <%--<script>//--%>
+    <%--function mysearch() {--%>
+        <%--var s="test";--%>
+        <%--$( "#mainboard" ).html(s);--%>
+    <%--}--%>
+    <%--</script>--%>
     <script>
         function mybusiness() {
             $( "#mainboard" ).load( "/pki/business.jsp");
@@ -105,16 +111,17 @@
 
                 <ul class="list-group">
                     <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="mybusiness()"> 我的事务</a></li>
+                    <li class="list-group-item" ><a href="javascript:void(0)" onclick="mysearch()"> 搜    索</a></li>
                     <li class="list-group-item" ><a href="javascript:void(0)" onclick="myinfo()"> 我的信息</a></li>
-
                 </ul>
             </div>
         </div>
         <div class="col-md-10 column" id="right">
             <div id="mainboard">
-                    <script>
-                        $( "#mainboard" ).load( "welcome.jsp");
-                    </script>
+
+                    <%--<script>--%>
+                        <%--$( "#mainboard" ).load( "welcome.jsp");--%>
+                    <%--</script>--%>
             </div>
         </div>
     </div>
