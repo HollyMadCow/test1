@@ -21,9 +21,7 @@ import javax.sql.DataSource;
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by HollyWin on 2017/1/28.
- */
+
 public class search extends HttpServlet {
     //服务器端代码
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +33,8 @@ public class search extends HttpServlet {
             if (searchkeyword == null) {
                 out.println("用户名不能为空");
             } else {
-                response.getWriter().println(searchkeyword);
+                out.println(searchkeyword);
+//                response.getWriter().println(searchkeyword);
 //                RequestDispatcher de=request.getRequestDispatcher("/pki/search.jsp");
 //                de.forward(request, response);
 //                String name = new String(old.getBytes("ISO8859-1"), "UTF-8");
