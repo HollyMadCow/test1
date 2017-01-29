@@ -105,9 +105,7 @@
                         我的事务
                     </h3>
                 </div>
-                <%--<div class="panel-body">--%>
-                    <%--Panel content--%>
-                <%--</div>--%>
+
 
                 <ul class="list-group">
                     <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="mybusiness()"> 我的事务</a></li>
