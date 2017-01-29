@@ -70,7 +70,7 @@ public class search extends HttpServlet {
                 }
 
                 out.println(array);
-//                out.println(searchkeyword);
+
 //                response.getWriter().println(searchkeyword);
 //                RequestDispatcher de=request.getRequestDispatcher("/pki/search.jsp");
 //                de.forward(request, response);
