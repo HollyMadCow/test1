@@ -18,10 +18,7 @@ public class DatabaseConnection {
         {
             throw e;
         }
-        catch(NamingException e)
-        {
-            throw e;
-        }
+
 
     }
 }
