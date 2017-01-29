@@ -1,15 +1,13 @@
 package cn.yhgaj.wjdd;
 
-/**
- * Created by HollyWin on 2017/1/27.
- */
+
 import java.io.IOException;
 
 import java.io.PrintWriter;
 
 import java.sql.*;
 
-import javax.naming.*;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
+
+import cn.yhgaj.wjdd.DatabaseConnection;
 
 public class pkilogin extends HttpServlet{
     public void init() throws ServletException{
@@ -44,16 +43,8 @@ public class pkilogin extends HttpServlet{
 
 
         try{
-//                                    Class.forName("com.mysql.jdbc.Driver");
-//                                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/yhgaj", "root", "zlw255151");
-//                                    stmt = conn.createStatement();
-//
-            Context initCtx = new InitialContext();
-            Context ctx = (Context) initCtx.lookup("java:comp/env");
-//获取连接池对象
-            DataSource ds =(DataSource)ctx.lookup("jdbc/ConnectionPool");
-//创建连接
-            conn = ds.getConnection();
+
+            conn = DatabaseConnection.getConnection();
             stmt = conn.createStatement();
             String sql=String.format("select username,userid from USER WHERE userid='%s'",userid);
             rs = stmt.executeQuery(sql);

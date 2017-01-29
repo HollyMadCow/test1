@@ -21,6 +21,7 @@ import javax.sql.DataSource;
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 import org.json.*;
+import cn.yhgaj.wjdd.DatabaseConnection;
 
 public class search extends HttpServlet {
     //服务器端代码
@@ -40,12 +41,12 @@ public class search extends HttpServlet {
             if (searchkeyword == null) {
                 out.println("用户名不能为空");
             } else {
-                Context initCtx = new InitialContext();
-                Context ctx = (Context) initCtx.lookup("java:comp/env");
-//获取连接池对象
-                DataSource ds =(DataSource)ctx.lookup("jdbc/ConnectionPool");
+//                Context initCtx = new InitialContext();
+//                Context ctx = (Context) initCtx.lookup("java:comp/env");
+////获取连接池对象
+//                DataSource ds =(DataSource)ctx.lookup("jdbc/ConnectionPool");
 //创建连接
-                conn = ds.getConnection();
+                conn = DatabaseConnection.getConnection();
                 stmt = conn.createStatement();
                 String sql=String.format("select username,userid from USER WHERE userid='%s'","331021198209300019");
                 rs = stmt.executeQuery(sql);
