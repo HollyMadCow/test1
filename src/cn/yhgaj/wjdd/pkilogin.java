@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import cn.yhgaj.wjdd.DatabaseConnection;
+
+//import cn.yhgaj.wjdd.DatabaseConnection;
 
 public class pkilogin extends HttpServlet{
     public void init() throws ServletException{
@@ -27,6 +29,7 @@ public class pkilogin extends HttpServlet{
     public void doGet(HttpServletRequest request,HttpServletResponse response)
             throws ServletException,IOException{
        // String usercredit=null;
+        HttpSession session = request.getSession();
         String userid;
         String useriddatabase= null;
         String userkey = "詹凌伟 331021198209300019";
@@ -64,10 +67,13 @@ public class pkilogin extends HttpServlet{
             }
         }
 
-
-        request.setAttribute("username", username);
-        request.setAttribute("userid", userid);
-        request.setAttribute("useriddatabase", useriddatabase);
+        session.setAttribute("username",username);
+        session.setAttribute("userid", userid);
+        session.setAttribute("useridfromdatabase", useriddatabase);
+//todo 需要设置登录状态，登录类型等等，用来用来给其他页面验证是否已经登录
+//        request.setAttribute("username", username);
+//        request.setAttribute("userid", userid);
+//        request.setAttribute("useridfromdatabase", useriddatabase);
         RequestDispatcher de=request.getRequestDispatcher("/pki/main.jsp");
         de.forward(request, response);
 

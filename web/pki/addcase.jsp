@@ -9,6 +9,7 @@
         margin: 0;
         padding: 0;
     }
+
     /*定义<body>标记样式*/
     body {
         background: #ffffff;
@@ -18,20 +19,20 @@
 
     }
     /*定义付费内容的样式*/
-    form#payment {
-        background: #488bd5;
+    form#addcase {
+        background: #ffffff;
         -webkit-border-radius: 5px;
         border-radius: 5px;
         padding: 20px;
         width: 400px;
         margin:auto;
     }
-    form#payment fieldset {
+    form#addcase fieldset {
         border: none;
         margin-bottom: 10px;
     }
-    form#payment fieldset:last-of-type { margin-bottom: 0; }
-    form#payment legend {
+    form#addcase fieldset:last-of-type { margin-bottom: 0; }
+    form#addcase legend {
         color: #384313;
         font-size: 16px;
         font-weight: bold;
@@ -39,17 +40,17 @@
         text-shadow: 0 1px 1px #ffffff;
     }
     /*form#payment > fieldset > legend:before {*/
-        /*content: "Step " counter(fieldsets) ": ";*/
-        /*counter-increment: fieldsets;*/
+    /*content: "Step " counter(fieldsets) ": ";*/
+    /*counter-increment: fieldsets;*/
     /*}*/
-    form#payment fieldset fieldset legend {
+    form#addcase fieldset fieldset legend {
         color: #111111;
         font-size: 13px;
         font-weight: normal;
         padding-bottom: 0;
     }
-    form#payment ol li {
-        background: #1fb8cf;
+    form#addcase ol li {
+        background: #ffffff;
         background: rgba(255, 255, 255, .3);
         border-color: #e3ebc3;
         border-color: rgba(255, 255, 255, .6);
@@ -61,24 +62,24 @@
         padding: 5px 10px;
         margin-bottom: 2px;
     }
-    form#payment ol ol li {
+    form#addcase ol ol li {
         background: none;
         border: none;
         float: left;
     }
-    form#payment label {
+    form#addcase label {
         float: left;
         font-size: 13px;
         width: 110px;
     }
-    form#payment fieldset fieldset label {
+    form#addcase fieldset fieldset label {
         background: none no-repeat left 50%;
         line-height: 20px;
         padding: 0 0 0 30px;
         width: auto;
     }
-    form#payment fieldset fieldset label:hover { cursor: pointer; }
-    form#payment input:not([type=radio]), form#payment textarea {
+    form#addcase fieldset fieldset label:hover { cursor: pointer; }
+    form#addcase input:not([type=radio]), form#payment textarea {
         background: #ffffff;
         border: #FC3 solid 1px;
         -webkit-border-radius: 3px;
@@ -87,11 +88,11 @@
         padding: 5px;
         width: 200px;
     }
-    form#payment input:not([type=submit]):focus, form#payment textarea:focus {
+    form#addcase input:not([type=submit]):focus, form#payment textarea:focus {
         background: #eaeaea;
         border: #F00 solid 1px;
     }
-    form#payment input[type=radio] {
+    form#addcase input[type=radio] {
         float: left;
         margin-right: 5px;
     }
@@ -110,28 +111,28 @@
         }
     </script>
     <%--<script type="text/javascript">--%>
-        <%--window.onload=function () {--%>
-            <%--var ui=document.getElementById("usernametext");--%>
-            <%--ui.style.display="none";--%>
-        <%--}--%>
+    <%--window.onload=function () {--%>
+    <%--var ui=document.getElementById("usernametext");--%>
+    <%--ui.style.display="none";--%>
+    <%--}--%>
     <%--</script>--%>
 </head>
 <body>
-<form id="payment">
+<form id="addcase">
     <fieldset>
-        <legend>初次使用信息注册</legend>
+        <legend>案件信息</legend>
         <ol>
             <li>
-                <label for="name">用户姓名：</label>
-                <input id="name" name="name" type="text" placeholder="请输入姓名" required autofocus>
+                <label for="name">案件编号：</label>
+                <input id="name" name="name" type="text" placeholder="案件编号" required autofocus>
             </li>
             <li>
-                <label for="userid">身份证号：</label>
-                <input id="userid" name="userid" type="text" placeholder="例：331021***" required>
+                <label for="userid">案件名称:</label>
+                <input id="userid" name="userid" type="text" placeholder="案件名称" required>
             </li>
             <li>
-                <label for="policedid">警  号：</label>
-                <input id="policedid" name="policedid" type="text" placeholder="例：33170531" required>
+                <label for="policedid">简要案情:</label>
+                <textarea id="policedid" name="policedid" rows="10" placeholder="简要案情" required></textarea>
             </li>
             <li>
                 <label for="email">邮件地址：</label>
@@ -146,8 +147,8 @@
                 <input id="shortnum" name="shortnum" type="tel" placeholder="例：646110" required>
             </li>
             <%--<li id="usernametext">--%>
-                <%--<label for="username">用户名：</label>--%>
-                <%--<input id="username" name="username" type="text" placeholder="例：646110" required>--%>
+            <%--<label for="username">用户名：</label>--%>
+            <%--<input id="username" name="username" type="text" placeholder="例：646110" required>--%>
             <%--</li>--%>
         </ol>
     </fieldset>
@@ -174,12 +175,12 @@
             </li>
 
             <%--<li>--%>
-                <%--<label for="postcode">邮政编码：</label>--%>
-                <%--<input id="postcode" name="postcode" type="text" required>--%>
+            <%--<label for="postcode">邮政编码：</label>--%>
+            <%--<input id="postcode" name="postcode" type="text" required>--%>
             <%--</li>--%>
             <%--<li>--%>
-                <%--<label for="country">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</label>--%>
-                <%--<input id="country" name="country" type="text" required>--%>
+            <%--<label for="country">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</label>--%>
+            <%--<input id="country" name="country" type="text" required>--%>
             <%--</li>--%>
         </ol>
     </fieldset>
@@ -187,35 +188,35 @@
         <legend>职位信息</legend>
         <ol>
             <%--<li>--%>
-                <%--<fieldset>--%>
-                    <%--<legend>职位性质</legend>--%>
-                    <%--<ol>--%>
-                        <%----%>
-                    <%--</ol>--%>
-                <%--</fieldset>--%>
+            <%--<fieldset>--%>
+            <%--<legend>职位性质</legend>--%>
+            <%--<ol>--%>
+            <%----%>
+            <%--</ol>--%>
+            <%--</fieldset>--%>
             <%--</li>--%>
-                <li>
-                    <label for="usertype">人员角色：</label>
-                    <select name="usertype" id="usertype" size="1" required>
-                        <option value="1">办案民警</option>
-                        <option value="2">办案单位配侦审批人员</option>
-                        <option value="3">网警配侦审批人员</option>
-                        <option value="4">网警配侦人员</option>
-                        <option value="5">局审批人员</option>
-                    </select>
-                    <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
-                </li>
+            <li>
+                <label for="usertype">人员角色：</label>
+                <select name="usertype" id="usertype" size="1" required>
+                    <option value="1">办案民警</option>
+                    <option value="2">办案单位配侦审批人员</option>
+                    <option value="3">网警配侦审批人员</option>
+                    <option value="4">网警配侦人员</option>
+                    <option value="5">局审批人员</option>
+                </select>
+                <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
+            </li>
             <%--<li>--%>
-                <%--<label for="cardnumber">银行卡号：</label>--%>
-                <%--<input id="cardnumber" name="cardnumber" type="number" required>--%>
-            <%--</li>--%>
-            <%--<li>--%>
-                <%--<label for="secure">验 证 码：</label>--%>
-                <%--<input id="secure" name="secure" type="number" required>--%>
+            <%--<label for="cardnumber">银行卡号：</label>--%>
+            <%--<input id="cardnumber" name="cardnumber" type="number" required>--%>
             <%--</li>--%>
             <%--<li>--%>
-                <%--<label for="namecard">持 卡 人：</label>--%>
-                <%--<input id="namecard" name="namecard" type="text" placeholder="确定是否该卡用户！" required>--%>
+            <%--<label for="secure">验 证 码：</label>--%>
+            <%--<input id="secure" name="secure" type="number" required>--%>
+            <%--</li>--%>
+            <%--<li>--%>
+            <%--<label for="namecard">持 卡 人：</label>--%>
+            <%--<input id="namecard" name="namecard" type="text" placeholder="确定是否该卡用户！" required>--%>
             <%--</li>--%>
         </ol>
     </fieldset>

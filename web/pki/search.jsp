@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: CowBoy
-  Date: 2017/1/12
-  Time: 11:23
-  To change this template use File | Settings | File Templates.
---%>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
 <%
@@ -40,7 +34,7 @@
     <tbody>
     <tr class="active">
         <td><%=keyword%></td>
-        <td>23/11/2手动阀手动阀手动梵蒂冈发的广泛大概发的鬼地方鬼地方广泛大概发的个阀手动阀手动阀手动阀是013</td>
+        <td>23/11/2手动阀手动阀手动阀手动阀手动阀是013</td>
         <td>待发货梵蒂冈地方官地方的官方的</td>
         <td>待发货</td>
         <td>待发货</td>
@@ -109,8 +103,8 @@
 
 <nav style="text-align: center">
     <ul class="pagination" >
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
+        <li ><a href="#">&laquo;</a></li>
+        <li class="active"><a href="#">1</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
         <li><a href="#">4</a></li>

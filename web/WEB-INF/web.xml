@@ -15,7 +15,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>pkilogin</servlet-name>
-        <url-pattern>/servlet/pkilogin</url-pattern>
+        <url-pattern>/servlet/ndp/pkilogin</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>search</servlet-name>
@@ -24,6 +24,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>search</servlet-name>
-        <url-pattern>/servlet/search</url-pattern>
+        <url-pattern>/servlet/ndp/search</url-pattern>
     </servlet-mapping>
 </web-app>

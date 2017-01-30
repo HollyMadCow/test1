@@ -4,24 +4,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String username =(String) request.getAttribute("username");
-    String userid =(String) request.getAttribute("userid");
+//    String username =(String) request.getAttribute("username");
+//    String userid =(String) request.getAttribute("userid");
+    String username =(String) session.getAttribute("username");
+    String userid =(String) session.getAttribute("userid");
 %>
 
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-3.1.1.min.js"></script>
     <script>//
     function mysearch() {
         if (document.getElementById("searchfiled").value != "")
         {
 
            var keyword = document.getElementById("searchfiled").value;
-           $.get("/servlet/search",{"keyword":keyword},function (data) {
+           $.get("/servlet/ndp/search",{"keyword":keyword},function (data) {
                $("#mainboard").load("/pki/search.jsp",{"return":data})
            });
 //            $("#mainboard").load("/servlet/search");
@@ -39,7 +41,9 @@
     <%--</script>--%>
     <script>
         function mybusiness() {
-            $( "#mainboard" ).load( "/pki/business.jsp");
+
+//            $( "#mainboard" ).load( "/pki/business.jsp");
+            $( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});
         }
     </script>
     <script>
@@ -48,7 +52,9 @@
         }
     </script>
     <script>
-
+        function addcase() {
+            $( "#mainboard" ).load( "/pki/addcase.jsp");
+        }
         <%--window.onload=function () {--%>
             <%--var firstregcheck=<%=userid%>;--%>
             <%--if(firstregcheck == null)--%>
@@ -108,6 +114,7 @@
 
                 <ul class="list-group">
                     <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="mybusiness()"> 我的事务</a></li>
+                    <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="addcase()"> 提交配侦</a></li>
                     <li class="list-group-item" ><a href="javascript:void(0)" onclick="mysearch()"> 搜    索</a></li>
                     <li class="list-group-item" ><a href="javascript:void(0)" onclick="myinfo()"> 我的信息</a></li>
                 </ul>

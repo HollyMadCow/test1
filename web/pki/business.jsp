@@ -1,18 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HollyWin
-  Date: 2017/1/10
-  Time: 23:17
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html>
-<html lang="cn">
-<meta http-equiv="X-UA-Compatible" content="IE=9" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<%
+    String userid = (String) session.getAttribute("userid");
+
+%>
+<html>
+<script>
+    $(document).ready(function () {
+        alert("ok,<%=userid%>");
+    })
+</script>
 <head>
-    <title>事务栏</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-事务栏
+<%=userid%>
 </body>
 </html>
