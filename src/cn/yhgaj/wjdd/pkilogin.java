@@ -38,7 +38,7 @@ public class pkilogin extends HttpServlet{
         //usercredit = split[0];
         userid = split[1];
 //        creditinfo=request.getHeader("ssl_client_s_dn_o");
-
+//todo 需要到时候设置读取证书的内容并判断该证书是否已经注册过，如果未注册则跳转注册，已注册则进行下一步
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
