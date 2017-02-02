@@ -119,6 +119,7 @@
             control.fileinput({
                 language: 'zh', //设置语言
                 uploadUrl : uploadUrl,
+//                uploadUrl: "/servlet/uploadimg", //上传的地址
                 allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
                 //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
                 uploadAsync: true, //默认异步上传

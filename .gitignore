@@ -52,7 +52,6 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -61,3 +60,5 @@ hs_err_pid*
 
 .gitignore
 out/
+.idea/inspectionProfiles/Project_Default_copy.xml
+.idea/inspectionProfiles/profiles_settings.xml
