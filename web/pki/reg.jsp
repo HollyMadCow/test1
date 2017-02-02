@@ -103,11 +103,11 @@
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
     <script>
-        function sumbit() {
-            alert("hello");
-//            var ui =document.getElementById("usernametext");
-//            ui.style.display="";//display为空的话会好使，为block会使后边的空间换行
-        }
+//        function sumbit() {
+//            alert("hello");
+////            var ui =document.getElementById("usernametext");
+////            ui.style.display="";//display为空的话会好使，为block会使后边的空间换行
+//        }
     </script>
     <%--<script type="text/javascript">--%>
         <%--window.onload=function () {--%>
@@ -117,17 +117,17 @@
     <%--</script>--%>
 </head>
 <body>
-<form id="payment">
+<form id="payment" method="post">
     <fieldset>
         <legend>初次使用信息注册</legend>
         <ol>
             <li>
                 <label for="name">用户姓名：</label>
-                <input id="name" name="name" type="text" placeholder="请输入姓名" required autofocus>
+                <input id="name" name="name" type="text" placeholder="请输入姓名"  required autofocus>
             </li>
             <li>
                 <label for="userid">身份证号：</label>
-                <input id="userid" name="userid" type="text" placeholder="例：331021***" required>
+                <input id="userid" name="userid" type="text" placeholder="例：331021***"  required>
             </li>
             <li>
                 <label for="policedid">警  号：</label>
@@ -220,7 +220,7 @@
         </ol>
     </fieldset>
     <fieldset>
-        <button type="button" class="center-block" onclick="sumbit()">注  册</button>
+        <button type="submit" class="center-block">注  册</button>
     </fieldset>
 </form>
 </body>

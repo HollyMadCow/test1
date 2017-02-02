@@ -26,4 +26,23 @@
         <servlet-name>search</servlet-name>
         <url-pattern>/servlet/ndp/search</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>addcase</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.addcase</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addcase</servlet-name>
+        <url-pattern>/servlet/ndp/addcase</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>uploadimg</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.uploadimg</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>uploadimg</servlet-name>
+        <url-pattern>/servlet/uploadimg</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -1,8 +1,18 @@
 <component name="ProjectDictionaryState">
   <dictionary name="HollyWin">
     <words>
+      <w>addcase</w>
+      <w>casedetail</w>
+      <w>caseid</w>
+      <w>casename</w>
+      <w>caseregfile</w>
+      <w>caseregno</w>
+      <w>fileinput</w>
+      <w>filepreupload</w>
+      <w>fileuploaded</w>
       <w>mysearch</w>
       <w>searchfiled</w>
+      <w>uploadimg</w>
     </words>
   </dictionary>
 </component>
