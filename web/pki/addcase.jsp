@@ -52,11 +52,11 @@
     form#addcase ol li {
         background: #ffffff;
         background: rgba(255, 255, 255, .3);
-        border-color: #e3ebc3;
+        /*border-color: #e3ebc3;*/
         border-color: rgba(255, 255, 255, .6);
         border-style: solid;
         border-width: 2px;
-        -webkit-border-radius: 5px;
+        /*-webkit-border-radius: 5px;*/
         line-height: 30px;
         list-style: none;
         padding: 5px 10px;
@@ -79,18 +79,33 @@
         width: auto;
     }
     form#addcase fieldset fieldset label:hover { cursor: pointer; }
-    form#addcase input:not([type=radio]), form#addcase textarea {
+    form#addcase input:not([type=radio]) {
         background: #ffffff;
-        border: #16ff39 solid 1px;
-        -webkit-border-radius: 3px;
+        /*border: #16ff39 solid 1px;*/
+        /*-webkit-border-radius: 3px;*/
         /*font: italic 13px Georgia, "Times New Roman", Times, serif;*/
         outline: none;
         padding: 5px;
         width: 300px;
+        height: 30px;
+    }
+    form#addcase select {
+        height: 30px;
+    }
+    form#addcase textarea {
+        background: #ffffff;
+        /*border: #16ff39 solid 1px;*/
+        /*-webkit-border-radius: 3px;*/
+        /*font: italic 13px Georgia, "Times New Roman", Times, serif;*/
+        outline: none;
+        padding: 5px;
+        width: 300px;
+
     }
     form#addcase input:not([type=submit]):focus, form#addcase textarea:focus {
         background: #eaeaea;
         border: #F00 solid 1px;
+
     }
     form#addcase input[type=radio] {
         float: left;
@@ -161,73 +176,66 @@
         //初始化控件initFileInput(id,uploadurl)控件id，与上传路径
         initFileInput("caseregfile", "/servlet/uploadimg");
 
-//        $("#caseregfile").fileinput({
-//            language: 'zh', //设置语言
-//            uploadUrl: "http://192.168.2.114/servlet/uploadimg", //上传的地址
-//            allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
-//            //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
-//            uploadAsync: true, //默认异步上传
-//            showUpload: true, //是否显示上传按钮
-//            showRemove : true, //显示移除按钮
-//            showPreview : true, //是否显示预览
-//            showCaption: false,//是否显示标题
-////            browseClass: "btn btn-primary", //按钮样式
-//            dropZoneEnabled: false,//是否显示拖拽区域
-//            //minImageWidth: 50, //图片的最小宽度
-//            //minImageHeight: 50,//图片的最小高度
-//            //maxImageWidth: 1000,//图片的最大宽度
-//            //maxImageHeight: 1000,//图片的最大高度
-//            //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
-//            //minFileCount: 0,
-//            maxFileCount: 1, //表示允许同时上传的最大文件个数
-//            enctype: 'multipart/form-data',
-//            validateInitialCount:true,
-//            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-//            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
-//        });
-//
-//            $("#caseregfile").on("fileuploaded", function(event, data,previewId, index) {
-//            if(data.response)
-//            {
-//                alert('处理成功');
-//            }
-////            $("#excelImport").modal("hide");
-//            //后台处理后返回的经纬度坐标json数组，
-//            var array = data.response;
-////            console.dir(array);
-//            alert(array);
-            <%--//jquery循环取经纬度坐标--%>
-            <%--&lt;%&ndash;$.each(array,function(index,latAndLon){&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var lon = latAndLon.lon;&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var lat = latAndLon.lat;&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var point =  new Point(lon, lat, map.spatialReference);&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var symbol = new esri.symbol.SimpleMarkerSymbol().setStyle(&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;SimpleMarkerSymbol.STYLE_CIRCLE).setColor(&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;new Color([255,255,0,0.5]));&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var attr = {"address": "addressName" };&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var infoTemplate = new esri.InfoTemplate("标题", "地址 :${address}");&ndash;%&gt;--%>
-                <%--&lt;%&ndash;var graphic = new Graphic(point,symbol,attr,infoTemplate);&ndash;%&gt;--%>
-                <%--&lt;%&ndash;map.graphics.add(graphic);&ndash;%&gt;--%>
-            <%--&lt;%&ndash;});&ndash;%&gt;--%>
-
-//        });
-
-//        $("caseregfile").on('filesuccessremove', function(event, id) {
-//            if (some_processing_function(id)) {
-//                console.log('Uploaded thumbnail successfully removed');
-//            } else {
-//                return false; // abort the thumbnail removal
-//            }
-//        });
 
     </script>
+    <script>
+        $(document).ready(function() {
 
+            var MaxInputs       = 10; //maximum input boxes allowed
+            var InputsWrapper   = $("#workdetail"); //Input boxes wrapper ID
+            var AddButton       = $("#morerequest"); //Add button ID
+
+            var x = InputsWrapper.length; //initlal text box count
+            var FieldCount=1; //to keep track of text box added
+
+            $(AddButton).click(function (e)  //on add input button click
+            {
+                if(x <= MaxInputs) //max input box allowed
+                {
+                    FieldCount++; //text box added increment
+                    //add input box
+                    $(InputsWrapper).append('<div xmlns="http://www.w3.org/1999/html">' +
+                        '<select name="addrequestdetail[]" id="addrequestdetail" size="1" required> ' +
+                        '<option value="姓名">姓名</option>' +
+                        '<option value="身份证">身份证</option>' +
+                        '<option value="现居住地">现居住地</option>' +
+                        '<option value="QQ">QQ</option>' +
+                        '<option value="微信">微信</option>' +
+                        '<option value="手机号码">手机号码</option>' +
+                        '<option value="手机IMSI/IMEI">手机IMSI/IMEI</option>' +
+                        '<option value="终端MAC地址">终端MAC地址</option>' +
+                        '<option value="陌陌">陌陌</option>' +
+                        '<option value="微博">微博</option>' +
+                        '<option value="邮箱">邮箱</option>' +
+                        '<option value="域名">域名</option>' +
+                        '<option value="IP地址">IP地址</option>' +
+                        '<option value="ADSL">ADSL</option>' +
+                        '<option value="其他">其他</option>' +
+                        '</select>&nbsp&nbsp&nbsp&nbsp' +
+                        '<input type="text" name="mytext[]" id="field_'+ FieldCount +'" required/><a href="#" class="removeclass" >×</a></br></br></div>');
+//                        '<input type="text" name="mytext[]" id="field_'+ FieldCount +'" value="Text '+ FieldCount +'"/><a href="#" class="removeclass">×</a></br></br></div>');
+                    x++; //text box increment
+                }
+                return false;
+            });
+
+            $("body").on("click",".removeclass", function(e){ //user click on remove text
+                if( x > 1 ) {
+                    $(this).parent('div').remove(); //remove text box
+                    x--; //decrement textbox
+                }
+                return false;
+            })
+
+        });
+
+    </script>
 </head>
 <body>
 
 <form id="addcase">
     <fieldset>
-        <legend>案件信息</legend>
+        <legend>案件信息:</legend>
         <ol>
             <li>
                 <label for="caseid">案件编号：</label>
@@ -248,24 +256,28 @@
             <li>
                 <label for="caseregfile">上传文书:</label>
                 <%--<input id="caseregfile" type="file" class="file-loading" multiple accept="image/*" required>--%>
-                <input id="caseregfile" name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*" required>
+                <input id="caseregfile" name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*">
 
             </li>
 
-            <%--<li id="usernametext">--%>
-            <%--<label for="username">用户名：</label>--%>
-            <%--<input id="username" name="username" type="text" placeholder="例：646110" required>--%>
-            <%--</li>--%>
         </ol>
     </fieldset>
     <fieldset>
-        <legend>单位信息：</legend>
+        <legend>配侦详情:</legend>
+        <%--<button type="button" class="center-block" id="morerequest" onclick="add()">添加配侦内容</button>--%>
+        <a href="#" id="morerequest" class="btn btn-info">添加配侦内容</a></span></p><p style="color: red">最多添加10个</p>
+        <ol id="workdetail">
+
+
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>单位信息:</legend>
         <ol>
             <li>
                 <label for="station">所属分局：</label>
                 <select name="station" id="station" size="1" required>
                     <option value="玉环市公安局">玉环市公安局</option>
-
                 </select>
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
@@ -280,27 +292,12 @@
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
 
-            <%--<li>--%>
-            <%--<label for="postcode">邮政编码：</label>--%>
-            <%--<input id="postcode" name="postcode" type="text" required>--%>
-            <%--</li>--%>
-            <%--<li>--%>
-            <%--<label for="country">国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家：</label>--%>
-            <%--<input id="country" name="country" type="text" required>--%>
-            <%--</li>--%>
         </ol>
     </fieldset>
     <fieldset>
-        <legend>职位信息</legend>
+        <legend>职务信息:</legend>
         <ol>
-            <%--<li>--%>
-            <%--<fieldset>--%>
-            <%--<legend>职位性质</legend>--%>
-            <%--<ol>--%>
-            <%----%>
-            <%--</ol>--%>
-            <%--</fieldset>--%>
-            <%--</li>--%>
+
             <li>
                 <label for="usertype">人员角色：</label>
                 <select name="usertype" id="usertype" size="1" required>
@@ -312,22 +309,11 @@
                 </select>
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
-            <%--<li>--%>
-            <%--<label for="cardnumber">银行卡号：</label>--%>
-            <%--<input id="cardnumber" name="cardnumber" type="number" required>--%>
-            <%--</li>--%>
-            <%--<li>--%>
-            <%--<label for="secure">验 证 码：</label>--%>
-            <%--<input id="secure" name="secure" type="number" required>--%>
-            <%--</li>--%>
-            <%--<li>--%>
-            <%--<label for="namecard">持 卡 人：</label>--%>
-            <%--<input id="namecard" name="namecard" type="text" placeholder="确定是否该卡用户！" required>--%>
-            <%--</li>--%>
+
         </ol>
     </fieldset>
     <fieldset>
-        <button type="submit" class="center-block" onclick="sumbit()" >注  册</button>
+        <button type="submit" class="center-block" onclick="sumbit()" >提交案件</button>
     </fieldset>
 </form>
 
