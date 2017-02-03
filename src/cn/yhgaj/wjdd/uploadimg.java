@@ -36,6 +36,7 @@ public class uploadimg extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
+        String filename=null;
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
@@ -47,6 +48,7 @@ public class uploadimg extends HttpServlet {
                 if (fileItem.getFieldName().equals("caseregfile"))
                 {
                     file1 = new File(getServletContext().getRealPath("uploadimage"), fileItem.getName());
+                    filename=fileItem.getName();
                     file1.getParentFile().mkdirs();
                     file1.createNewFile();
 //                    System.out.println(fileItem.getName() + " psd");
@@ -72,7 +74,7 @@ public class uploadimg extends HttpServlet {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("result", "ok");
+            jsonObject.put("result", filename);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -164,6 +164,7 @@
                 var array = data.response;
                 var name="result";
                 var value=array[name];
+//                $("#caseregfile").val(value);
                 alert(value);
 //                console.dir(array);
 //                alert(array);
@@ -222,7 +223,7 @@
             $("body").on("click",".removeclass", function(e){ //user click on remove text
                 if( x > 1 ) {
                     $(this).parent('div').remove(); //remove text box
-                    x--;
+                    x--; //decrement textbox
                 }
                 return false;
             })
@@ -233,7 +234,7 @@
 </head>
 <body>
 
-<form id="addcase">
+<form id="addcase" method="GET" action="/servlet/ndp/addcase">
     <fieldset>
         <legend>案件信息:</legend>
         <ol>
@@ -313,7 +314,7 @@
         </ol>
     </fieldset>
     <fieldset>
-        <button type="submit" class="center-block" onclick="sumbit()" >提交案件</button>
+        <button type="submit" class="center-block" >提交案件</button>
     </fieldset>
 </form>
 

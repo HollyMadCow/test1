@@ -22,6 +22,14 @@ public class addcase extends HttpServlet {
         pw.println(request.getParameter("caseid"));
         pw.println(request.getParameter("casename"));
         pw.println(request.getParameter("casedetail"));
+        pw.println(request.getParameter("caseregno"));
+        pw.println(request.getParameter("caseregfile"));
+        String [] ages = (String [])request.getParameterValues("addrequestdetail[]");
+        String [] ages1 = (String [])request.getParameterValues("mytext[]");
+        pw.println(request.getParameter(ages[1]));
+        pw.println(request.getParameter(ages1[1]));
+
+
 
     }
     @Override
