@@ -222,7 +222,7 @@
             $("body").on("click",".removeclass", function(e){ //user click on remove text
                 if( x > 1 ) {
                     $(this).parent('div').remove(); //remove text box
-                    x--; //decrement textbox
+                    x--;
                 }
                 return false;
             })
