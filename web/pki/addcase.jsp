@@ -21,8 +21,8 @@
     /*定义付费内容的样式*/
     form#addcase {
         background: #ffffff;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
+        /*-webkit-border-radius: 5px;*/
+        /*border-radius: 5px;*/
         padding: 20px;
         width: 600px;
         margin:auto;
@@ -53,9 +53,9 @@
         background: #ffffff;
         background: rgba(255, 255, 255, .3);
         /*border-color: #e3ebc3;*/
-        border-color: rgba(255, 255, 255, .6);
-        border-style: solid;
-        border-width: 2px;
+        /*border-color: rgba(255, 255, 255, .6);*/
+        /*border-style: solid;*/
+        /*border-width: 2px;*/
         /*-webkit-border-radius: 5px;*/
         line-height: 30px;
         list-style: none;
@@ -301,7 +301,14 @@
     <fieldset>
         <legend>职务信息:</legend>
         <ol>
-
+            <li>
+                <label for="caseby">经办民警:</label>
+                <input id="caseby" name="caseby" type="text" placeholder="经办民警" required>
+            </li>
+            <li>
+                <label for="officerphone">联系号码:</label>
+                <input id="officerphone" name="officerphone" type="text" placeholder="联系号码" required>
+            </li>
             <li>
                 <label for="usertype">人员角色：</label>
                 <select name="usertype" id="usertype" size="1" required>

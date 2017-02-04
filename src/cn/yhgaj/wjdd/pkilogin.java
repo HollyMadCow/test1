@@ -70,7 +70,7 @@ public class pkilogin extends HttpServlet{
         session.setAttribute("username",username);
         session.setAttribute("userid", userid);
         session.setAttribute("useridfromdatabase", useriddatabase);
-//todo 需要设置登录状态，登录类型等等，用来用来给其他页面验证是否已经登录
+//todo 需要设置登录状态，登录类型等等，用来用来给其他页面验证是否已经登录，并将用户信息写入session
 //        request.setAttribute("username", username);
 //        request.setAttribute("userid", userid);
 //        request.setAttribute("useridfromdatabase", useriddatabase);

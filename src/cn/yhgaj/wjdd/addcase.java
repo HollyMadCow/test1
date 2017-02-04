@@ -1,7 +1,9 @@
 package cn.yhgaj.wjdd;
+
+import org.json.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +28,11 @@ public class addcase extends HttpServlet {
             throws ServletException, IOException {
         //跳转到doGet当中去处理
 //        doGet(request, response);
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        JSONArray array=new JSONArray();
+        //todo 将提交的数据写入数据库，其中数组的先排列成JSON格式写入数据库
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
 
@@ -37,15 +44,56 @@ public class addcase extends HttpServlet {
         pw.println(request.getParameter("casedetail"));
         pw.println(request.getParameter("caseregno"));
         pw.println(request.getParameter("caseregfilename"));
-        String [] addrequestdetail = (String [])request.getParameterValues("addrequestdetail[]");
-        String [] mytext = (String [])request.getParameterValues("mytext[]");
-        if (addrequestdetail.length ==mytext.length)
+        String caseid=request.getParameter("caseid");
+        String casename=request.getParameter("casename");
+        String casedetail=request.getParameter("casedetail");
+        String caseregno=request.getParameter("caseregno");
+        String caseregfilename=request.getParameter("caseregfilename");
+        String station=request.getParameter("station");
+        String area=request.getParameter("area");
+        String caseby=request.getParameter("caseby");
+        String officerphone=request.getParameter("officerphone");
+        String state="提交";
+
+        String [] addrequestdetail = /*(String [])*/request.getParameterValues("addrequestdetail[]");
+        String [] mytext = /*(String [])*/request.getParameterValues("mytext[]");
+        try
         {
-            for (int i=0;i<addrequestdetail.length;i++)
+            conn = DatabaseConnection.getConnection();
+            stmt = conn.createStatement();
+
+            if (addrequestdetail.length == mytext.length )
             {
-                pw.println(addrequestdetail[i]);
-                pw.println(mytext[i]);
+                JSONObject obj=new JSONObject();
+                for (int i=0;i<addrequestdetail.length;i++)
+                {
+
+                    obj.put(addrequestdetail[i],mytext[i]);
+//
+//                    pw.println(addrequestdetail[i]);
+//                    pw.println(mytext[i]);
+
+                }
+                array.put(obj);
+                pw.println(array);
             }
+            String sql=String.format("insert into `case` " +
+                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename) " +
+                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    caseid,casename,casedetail,array,area,caseby,officerphone,state,caseregno,caseregfilename);
+                stmt.execute(sql);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            pw.close();
         }
     }
 }
