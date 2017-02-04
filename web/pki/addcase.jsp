@@ -303,23 +303,23 @@
         <ol>
             <li>
                 <label for="caseby">经办民警:</label>
-                <input id="caseby" name="caseby" type="text" placeholder="经办民警" required>
+                <input id="caseby" name="caseby" type="text" placeholder="姓名" required>
             </li>
             <li>
                 <label for="officerphone">联系号码:</label>
-                <input id="officerphone" name="officerphone" type="text" placeholder="联系号码" required>
+                <input id="officerphone" name="officerphone" type="text" placeholder="长号/短号" required>
             </li>
-            <li>
-                <label for="usertype">人员角色：</label>
-                <select name="usertype" id="usertype" size="1" required>
-                    <option value="1">办案民警</option>
-                    <option value="2">办案单位配侦审批人员</option>
-                    <option value="3">网警配侦审批人员</option>
-                    <option value="4">网警配侦人员</option>
-                    <option value="5">局审批人员</option>
-                </select>
-                <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
-            </li>
+            <%--<li>--%>
+                <%--<label for="usertype">人员角色：</label>--%>
+                <%--<select name="usertype" id="usertype" size="1" required>--%>
+                    <%--<option value="1">办案民警</option>--%>
+                    <%--<option value="2">办案单位配侦审批人员</option>--%>
+                    <%--<option value="3">网警配侦审批人员</option>--%>
+                    <%--<option value="4">网警配侦人员</option>--%>
+                    <%--<option value="5">局审批人员</option>--%>
+                <%--</select>--%>
+                <%--&lt;%&ndash;<textarea id="address" name="address" rows="1" required></textarea>&ndash;%&gt;--%>
+            <%--</li>--%>
 
         </ol>
     </fieldset>
