@@ -1,6 +1,7 @@
 package cn.yhgaj.wjdd;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -14,10 +15,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +34,12 @@ public class uploadimg extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
-        String filename=null;
+        String fileName=null;
+        Date currentTime = new Date();
+        String nfilename= new SimpleDateFormat("yyyyMMddHHmmssSS").format(currentTime);
+        String datefilepath= new SimpleDateFormat("yyyyMMdd").format(currentTime);
+//        Calendar calendar = Calendar.getInstance();
+//        String nfilename = String.valueOf(calendar.getTimeInMillis());
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
@@ -47,9 +50,15 @@ public class uploadimg extends HttpServlet {
 //                System.out.println(fileItem.getFieldName());
                 if (fileItem.getFieldName().equals("caseregfile"))
                 {
-                    file1 = new File(getServletContext().getRealPath("uploadimage"), fileItem.getName());
-                    filename=fileItem.getName();
+                    int index = fileItem.getName().lastIndexOf(".");//查找最后一个点号用来确认后缀
+//                    fileName = fileItem.getName();
+                    fileName = fileItem.getName().replace(fileItem.getName().substring(0, index), nfilename);//替换除后缀外的文件名，当前系统日期替代
+//                    fileName = fileName.replace(fileName.substring(0, index), nfilename);
+                    file1 = new File(getServletContext().getRealPath("uploadimage\\"+datefilepath),fileName );
+
+
                     file1.getParentFile().mkdirs();
+//                    file1.getParentFile().mkdirs();
                     file1.createNewFile();
 //                    System.out.println(fileItem.getName() + " psd");
                     InputStream ins = fileItem.getInputStream();
@@ -74,7 +83,7 @@ public class uploadimg extends HttpServlet {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("result", filename);
+            jsonObject.put("result", datefilepath+"/"+fileName);
         } catch (JSONException e) {
             e.printStackTrace();
         }

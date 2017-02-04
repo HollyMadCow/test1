@@ -8,15 +8,17 @@
 //    String userid =(String) request.getAttribute("userid");
     String username =(String) session.getAttribute("username");
     String userid =(String) session.getAttribute("userid");
+
 %>
 
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery-3.1.1.min.js"></script>
+
     <script>//
     function mysearch() {
         if (document.getElementById("searchfiled").value != "")

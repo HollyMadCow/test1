@@ -2,6 +2,17 @@
 <html lang="en">
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    //    String username =(String) request.getAttribute("username");
+//    String userid =(String) request.getAttribute("userid");
+    String username =(String) session.getAttribute("username");
+    String userid =(String) session.getAttribute("userid");
+    String useridfromdatabase=(String) session.getAttribute("useridfromdatabase");
+    String cellphone = (String) session.getAttribute("cellphone");
+    String area1 = (String) session.getAttribute("area");
+    String realname = (String) session.getAttribute("realname");
+    String email = (String) session.getAttribute("email");
+%>
 
 <style type="text/css">
     /*分别定义HTML中和标记之的距离样式*/
@@ -116,9 +127,10 @@
 <head>
     <title>提交配侦</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link media="all" rel="stylesheet" type="text/css" href="/fileinput/css/fileinput.min.css">
-    <script src="/js/jquery-3.1.1.min.js"></script>
+
     <script src="/fileinput/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
     <script src="/fileinput/js/plugins/purify.min.js" type="text/javascript"></script>
     <script src="/fileinput/js/plugins/sortable.min.js" type="text/javascript"></script>
@@ -229,8 +241,26 @@
             })
 
         });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#caseby").val('<%=realname%>');
+            <%--<!--$('#caseby').attr("value", <%=realname%>);-->--%>
+            $("#officerphone").val('<%=cellphone%>');
+            $("#area").val('<%=area1%>');
+            $("#email").val('<%=email%>');
+            //alert(document.getElementById("caseby").value);
+        })
 
     </script>
+    <%--<script>--%>
+        <%--function adduserinfo() {--%>
+            <%--$("#caseby").val('<%=realname%>');--%>
+            <%--$("#officerphone").val('<%=cellphone%>');--%>
+        <%--}--%>
+    <%--</script>--%>
+
 </head>
 <body>
 
@@ -292,6 +322,7 @@
                     <option value="玉城所">玉城所</option>
                     <option value="坎门所">坎门所</option>
                     <option value="楚门所">楚门所</option>
+                    <option value="刑大直属中队">刑大直属中队</option>
                 </select>
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
@@ -301,6 +332,7 @@
     <fieldset>
         <legend>职务信息:</legend>
         <ol>
+
             <li>
                 <label for="caseby">经办民警:</label>
                 <input id="caseby" name="caseby" type="text" placeholder="姓名" required>
@@ -309,6 +341,12 @@
                 <label for="officerphone">联系号码:</label>
                 <input id="officerphone" name="officerphone" type="text" placeholder="长号/短号" required>
             </li>
+            <li>
+                <label for="email">内网邮箱:</label>
+                <input id="email" name="email" type="text" placeholder="内网邮箱" required>
+                <p style="color: red">向邮箱发送案件审核、配侦进度，邮箱与手机绑定可获得短信通知</p>
+            </li>
+
             <%--<li>--%>
                 <%--<label for="usertype">人员角色：</label>--%>
                 <%--<select name="usertype" id="usertype" size="1" required>--%>
