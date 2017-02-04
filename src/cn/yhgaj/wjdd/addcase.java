@@ -14,7 +14,20 @@ public class addcase extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+
+
+        doPost(request, response);
+
+
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //跳转到doGet当中去处理
+//        doGet(request, response);
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
 
         //将接收到的数据再返回给客户端
         PrintWriter pw = response.getWriter();
@@ -23,19 +36,16 @@ public class addcase extends HttpServlet {
         pw.println(request.getParameter("casename"));
         pw.println(request.getParameter("casedetail"));
         pw.println(request.getParameter("caseregno"));
-        pw.println(request.getParameter("caseregfile"));
-        String [] ages = (String [])request.getParameterValues("addrequestdetail[]");
-        String [] ages1 = (String [])request.getParameterValues("mytext[]");
-        pw.println(request.getParameter(ages[1]));
-        pw.println(request.getParameter(ages1[1]));
-
-
-
-    }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //跳转到doGet当中去处理
-        doGet(request, response);
+        pw.println(request.getParameter("caseregfilename"));
+        String [] addrequestdetail = (String [])request.getParameterValues("addrequestdetail[]");
+        String [] mytext = (String [])request.getParameterValues("mytext[]");
+        if (addrequestdetail.length ==mytext.length)
+        {
+            for (int i=0;i<addrequestdetail.length;i++)
+            {
+                pw.println(addrequestdetail[i]);
+                pw.println(mytext[i]);
+            }
+        }
     }
 }

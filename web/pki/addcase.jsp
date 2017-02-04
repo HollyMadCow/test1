@@ -164,7 +164,7 @@
                 var array = data.response;
                 var name="result";
                 var value=array[name];
-//                $("#caseregfile").val(value);
+                $("#caseregfilename").val(value);
                 alert(value);
 //                console.dir(array);
 //                alert(array);
@@ -234,7 +234,7 @@
 </head>
 <body>
 
-<form id="addcase" method="GET" action="/servlet/ndp/addcase">
+<form id="addcase" method="post" action="/servlet/ndp/addcase">
     <fieldset>
         <legend>案件信息:</legend>
         <ol>
@@ -256,8 +256,11 @@
             </li>
             <li>
                 <label for="caseregfile">上传文书:</label>
+                    <%--<label>上传文书:</label>--%>
                 <%--<input id="caseregfile" type="file" class="file-loading" multiple accept="image/*" required>--%>
-                <input id="caseregfile" name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*">
+                <input id="caseregfile"  name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*">
+                    <%--<input type="file" data-show-caption="true" multiple accept="image/*">--%>
+                <input type="text" style="visibility: hidden" id="caseregfilename" name="caseregfilename">
 
             </li>
 
