@@ -61,6 +61,7 @@ public class addcase extends HttpServlet {
         String accesscode = autogeneratecode.genauthcode();
         String state="提交";
 
+
         String [] addrequestdetail = /*(String [])*/request.getParameterValues("addrequestdetail[]");
         String [] mytext = /*(String [])*/request.getParameterValues("mytext[]");
         try
