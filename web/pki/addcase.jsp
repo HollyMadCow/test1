@@ -203,8 +203,10 @@
 
             $(AddButton).click(function (e)  //on add input button click
             {
+
                 if(x <= MaxInputs) //max input box allowed
                 {
+
                     FieldCount++; //text box added increment
                     //add input box
                     $(InputsWrapper).append('<div xmlns="http://www.w3.org/1999/html">' +
@@ -299,12 +301,23 @@
     <fieldset>
         <legend>配侦详情:</legend>
         <%--<button type="button" class="center-block" id="morerequest" onclick="add()">添加配侦内容</button>--%>
-        <a href="#" id="morerequest" class="btn btn-info">添加配侦内容</a></span></p><p style="color: red">最多添加10个</p>
+        <a href="#" id="morerequest" class="btn btn-info">添加配侦线索</a></span></p><p style="color: red">最多添加10个</p>
         <ol id="workdetail">
 
 
         </ol>
+
     </fieldset>
+   <fieldset>
+       <legend>线索来源:</legend>
+       <ol>
+           <li>
+               <label for="detailfrom">线索来源:</label>
+               <textarea id="detailfrom" cols="50" name="detailfrom" rows="3" placeholder="请填写线索来源"></textarea>
+               <p style="color: red">未填写或不能通过审核</p>
+           </li>
+       </ol>
+   </fieldset>
     <fieldset>
         <legend>单位信息:</legend>
         <ol>

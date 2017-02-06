@@ -27,15 +27,14 @@ public class addcase extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //跳转到doGet当中去处理
 //        doGet(request, response);
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
-        JSONArray array= new JSONArray();
+//        JSONArray array= new JSONArray();
         JSONObject obj=new JSONObject();
         Date currentTime = new Date();
-        //todo 将提交的数据写入数据库，其中数组的先排列成JSON格式写入数据库
+
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
 
@@ -47,6 +46,7 @@ public class addcase extends HttpServlet {
         pw.println(request.getParameter("casedetail"));
         pw.println(request.getParameter("caseregno"));
         pw.println(request.getParameter("caseregfilename"));
+//        String configpath=request.getServletContext().getRealPath("/");
         String caseid=request.getParameter("caseid");
         String casename=request.getParameter("casename");
         String casedetail=request.getParameter("casedetail");
@@ -57,9 +57,12 @@ public class addcase extends HttpServlet {
         String caseby=request.getParameter("caseby");
         String officerphone=request.getParameter("officerphone");
         String email=request.getParameter("email");
+        String detailfrom=request.getParameter("detailfrom");
         String sumbitdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(currentTime);
         String accesscode = autogeneratecode.genauthcode();
         String state="提交";
+//        String sqlstr=readconfig.getConfigstr(configpath,"ip");
+
 
 
         String [] addrequestdetail = /*(String [])*/request.getParameterValues("addrequestdetail[]");
@@ -72,24 +75,17 @@ public class addcase extends HttpServlet {
             {
                 if (addrequestdetail.length == mytext.length  )
                 {
-
                     for (int i=0;i<addrequestdetail.length;i++)
                     {
-
                         obj.put(addrequestdetail[i],mytext[i]);
-//
-//                    pw.println(addrequestdetail[i]);
-//                    pw.println(mytext[i]);
-
                     }
-                    //array.put(obj);
                     pw.println(obj);
                 }
             }
             String sql=String.format("insert into `case` " +
-                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode) " +
-                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
-                    caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode);
+                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode,detailfrom,station) " +
+                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station);
                 stmt.executeUpdate(sql);
         }catch (Exception e)
         {
