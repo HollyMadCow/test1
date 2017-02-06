@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static cn.yhgaj.wjdd.sendmail.sendmsgmail;
 
 public class addcase extends HttpServlet {
     @Override
@@ -82,6 +83,7 @@ public class addcase extends HttpServlet {
                     "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
                     caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station);
                 stmt.executeUpdate(sql);
+//                sendmsgmail("zlwh2y@sina.com",accesscode);
         }catch (Exception e)
         {
             e.printStackTrace();

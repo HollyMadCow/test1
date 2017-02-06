@@ -33,5 +33,7 @@
     <orderEntry type="library" name="servlet-api" level="application" />
     <orderEntry type="library" name="jsp-api" level="application" />
     <orderEntry type="library" name="commons-lang3-3.5" level="project" />
+    <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="javax.mail" level="project" />
   </component>
 </module>

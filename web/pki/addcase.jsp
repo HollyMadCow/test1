@@ -161,6 +161,7 @@
 
 </head>
 <script>
+
     function savereport() {
 // jquery 表单提交
         $("#addcase").ajaxSubmit(function(message) {
@@ -184,12 +185,14 @@
 //                    if (type === 'yes'){
 //                        $( "#mainboard" ).load( "/pki/addcase.jsp");
 //                        Lobibox.alert("success",{msg:"案件提交成功！"});
+//                        return false;
 //                    }
 //                }
 //            });
-            $( "#mainboard" ).load( "/pki/addcase.jsp");
-            Lobibox.alert("success",{msg:"案件提交成功！"});
-
+           //
+//            Lobibox.alert("success",{msg:"案件提交成功！"});
+             alert("案件提交成功！");
+             $( "#mainboard" ).load( "/pki/business.jsp");
 
         });
 
@@ -307,7 +310,7 @@
         </ol>
     </fieldset>
     <fieldset>
-        <button type="submit" class="center-block" >提交案件</button>
+        <button type="submit" class="center-block" id="submitinput" >提交案件</button>
     </fieldset>
 </form>
 
