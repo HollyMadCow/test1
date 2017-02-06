@@ -5,21 +5,14 @@ CREATE TABLE area
     belongstation VARCHAR(20) NOT NULL COMMENT '所属分局',
     belongcity VARCHAR(20) NOT NULL COMMENT '所属市',
     belongprovince VARCHAR(20) NOT NULL COMMENT '所属省',
-    stationcode BIGINT(20) NOT NULL COMMENT '分局代码',
-    areacode BIGINT(20)
+    stationcode INT(11) NOT NULL COMMENT '分局代码',
+    areacode INT(11)
 );
 CREATE TABLE `case`
 (
     id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
     caseid VARCHAR(20) NOT NULL COMMENT '案件编号',
     casedetail VARCHAR(1000) NOT NULL COMMENT '简要案情',
-    suspectname VARCHAR(100) COMMENT '嫌疑人员姓名',
-    suspectid VARCHAR(100) COMMENT '身份证',
-    wechat VARCHAR(100) COMMENT '微信类等app',
-    cellphone VARCHAR(500) COMMENT '手机号码',
-    weibo VARCHAR(100) COMMENT '微博',
-    alipaykind VARCHAR(100) COMMENT '淘宝支付宝等账号',
-    email VARCHAR(100) COMMENT '邮箱',
     request VARCHAR(1000) NOT NULL COMMENT '配侦要求',
     area VARCHAR(50) NOT NULL COMMENT '申请单位',
     caseby VARCHAR(20) NOT NULL COMMENT '经办人 姓名',
@@ -28,12 +21,17 @@ CREATE TABLE `case`
     arealeader VARCHAR(10) COMMENT '分管领导审批 姓名',
     stationleader VARCHAR(10) COMMENT '局领导审批 姓名',
     cyberleader VARCHAR(10) COMMENT '网警领导审批 姓名',
-    submitdate DATE COMMENT '配侦提交日期',
     handlesir VARCHAR(10) COMMENT '配侦人员 姓名',
     respone VARCHAR(1000) COMMENT '配侦反馈',
-    accesscode VARCHAR(4) COMMENT '审批授权码'
+    accesscode VARCHAR(4) COMMENT '审批授权码',
+    caseregno VARCHAR(50) COMMENT '立案决定书文书号',
+    caseregfilename VARCHAR(100) COMMENT '立案决定书文件名',
+    casename VARCHAR(200) COMMENT '案件名称',
+    email VARCHAR(50),
+    sumbitdate DATETIME COMMENT '配侦提交日期',
+    detailfrom VARCHAR(1000) COMMENT '线索来源',
+    station VARCHAR(20) COMMENT '案件所属分局'
 );
-CREATE UNIQUE INDEX caseid ON `case` (caseid);
 CREATE TABLE logs
 (
     id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -43,6 +41,10 @@ CREATE TABLE logs
     userid BIGINT(20) NOT NULL
 );
 CREATE INDEX realname ON logs (realname);
+CREATE TABLE test
+(
+    name VARCHAR(100)
+);
 CREATE TABLE user
 (
     id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -54,12 +56,12 @@ CREATE TABLE user
     area VARCHAR(50) NOT NULL COMMENT '哪个所（区域）',
     realname VARCHAR(10) NOT NULL COMMENT '姓名',
     email VARCHAR(50) COMMENT '办案人员邮箱',
-    loginkind TINYINT(1) DEFAULT '0' NOT NULL COMMENT '登录类型，pki还是nopki',
-    isadmin TINYINT(1) DEFAULT '0' NOT NULL COMMENT '是否管理员',
+    loginkind TINYINT(1) NOT NULL COMMENT '登录类型，pki还是nopki',
+    isadmin TINYINT(1) NOT NULL COMMENT '是否管理员',
     station VARCHAR(20) NOT NULL COMMENT '所属分局',
     province VARCHAR(20) NOT NULL COMMENT '省',
     city VARCHAR(20) NOT NULL COMMENT '地市',
-    department VARCHAR(20) COMMENT '部门',
+    department VARCHAR(20) NOT NULL COMMENT '部门',
     usertype VARCHAR(20) COMMENT '人员类型，办案还是配侦还是审批人员',
-    verifyed TINYINT(1) DEFAULT '0' NOT NULL COMMENT '审核状态'
+    verifyed TINYINT(1) DEFAULT '0' NOT NULL
 );

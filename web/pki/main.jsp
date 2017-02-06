@@ -7,6 +7,7 @@
 //    String username =(String) request.getAttribute("username");
 //    String userid =(String) request.getAttribute("userid");
     String username =(String) session.getAttribute("username");
+    String realname =(String) session.getAttribute("realname");
     String userid =(String) session.getAttribute("userid");
 
 %>
@@ -81,13 +82,13 @@
                         <span class="icon-bar"></span>
                     </button>
                     <%--<a class="navbar-brand" href=""><%=request.getHeader("SSL_CLIENT_S_DN_O")%>，您好！</a>--%>
-                    <a class="navbar-brand" href=""><%=username%>，您好！</a>
+                    <a class="navbar-brand" href=""><%=realname%>，您好！</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="javascript:void(0)" onclick="mybusiness()">您目前尚有<%=userid%>件事务等待办结，点击查看。</a>
+                            <a href="javascript:void(0)" onclick="mybusiness()">您目前尚有<%=userid%>件事务等待处理，点击查看。</a>
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search">

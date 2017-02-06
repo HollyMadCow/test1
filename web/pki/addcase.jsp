@@ -14,121 +14,14 @@
     String email = (String) session.getAttribute("email");
 %>
 
-<style type="text/css">
-    /*分别定义HTML中和标记之的距离样式*/
-    html, body, h1, form, fieldset, legend, ol, li {
-        margin: 0;
-        padding: 0;
-    }
-    textarea{resize:none;}
-    /*定义<body>标记样式*/
-    body {
-        background: #ffffff;
-        color: #111111;
-        /*font-family: Georgia, "Times New Roman", Times, serif;*/
-        padding-left: 20px;
 
-    }
-    /*定义付费内容的样式*/
-    form#addcase {
-        background: #ffffff;
-        /*-webkit-border-radius: 5px;*/
-        /*border-radius: 5px;*/
-        padding: 20px;
-        width: 600px;
-        margin:auto;
-    }
-    form#addcase fieldset {
-        border: none;
-        margin-bottom: 10px;
-    }
-    form#addcase fieldset:last-of-type { margin-bottom: 0; }
-    form#addcase legend {
-        color: #384313;
-        font-size: 16px;
-        font-weight: bold;
-        padding-bottom: 10px;
-        text-shadow: 0 1px 1px #ffffff;
-    }
-    /*form#payment > fieldset > legend:before {*/
-    /*content: "Step " counter(fieldsets) ": ";*/
-    /*counter-increment: fieldsets;*/
-    /*}*/
-    form#addcase fieldset fieldset legend {
-        color: #111111;
-        font-size: 13px;
-        font-weight: normal;
-        padding-bottom: 0;
-    }
-    form#addcase ol li {
-        background: #ffffff;
-        background: rgba(255, 255, 255, .3);
-        /*border-color: #e3ebc3;*/
-        /*border-color: rgba(255, 255, 255, .6);*/
-        /*border-style: solid;*/
-        /*border-width: 2px;*/
-        /*-webkit-border-radius: 5px;*/
-        line-height: 30px;
-        list-style: none;
-        padding: 5px 10px;
-        margin-bottom: 2px;
-    }
-    form#addcase ol ol li {
-        background: none;
-        border: none;
-        float: left;
-    }
-    form#addcase label {
-        float: left;
-        font-size: 13px;
-        width: 110px;
-    }
-    form#addcase fieldset fieldset label {
-        background: none no-repeat left 50%;
-        line-height: 20px;
-        padding: 0 0 0 30px;
-        width: auto;
-    }
-    form#addcase fieldset fieldset label:hover { cursor: pointer; }
-    form#addcase input:not([type=radio]) {
-        background: #ffffff;
-        /*border: #16ff39 solid 1px;*/
-        /*-webkit-border-radius: 3px;*/
-        /*font: italic 13px Georgia, "Times New Roman", Times, serif;*/
-        outline: none;
-        padding: 5px;
-        width: 300px;
-        height: 30px;
-    }
-    form#addcase select {
-        height: 30px;
-    }
-    form#addcase textarea {
-        background: #ffffff;
-        /*border: #16ff39 solid 1px;*/
-        /*-webkit-border-radius: 3px;*/
-        /*font: italic 13px Georgia, "Times New Roman", Times, serif;*/
-        outline: none;
-        padding: 5px;
-        width: 300px;
-
-    }
-    form#addcase input:not([type=submit]):focus, form#addcase textarea:focus {
-        background: #eaeaea;
-        border: #F00 solid 1px;
-
-    }
-    form#addcase input[type=radio] {
-        float: left;
-        margin-right: 5px;
-    }
-
-</style>
 <head>
     <title>提交配侦</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/addcasecss.css">
+    <link rel="stylesheet" href="/js/dist/css/lobibox.min.css">
     <link media="all" rel="stylesheet" type="text/css" href="/fileinput/css/fileinput.min.css">
 
     <script src="/fileinput/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
@@ -137,9 +30,12 @@
 
     <script src="/fileinput/js/fileinput.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/dist/js/lobibox.min.js"></script>
+    <script type="text/javascript" src="/js/dist/js/messageboxes.min.js"></script>
+    <script type="text/javascript" src="/js/dist/js/notifications.min.js"></script>
     <script src="/fileinput/themes/fa/theme.js"></script>
     <script src="/fileinput/js/locales/zh.js"></script>
-
+    <script src="/js/jquery.form.js"></script>
     <script type="text/javascript">
         function initFileInput(ctrlName, uploadUrl) {
             var control = $('#' + ctrlName);
@@ -264,9 +160,45 @@
     <%--</script>--%>
 
 </head>
+<script>
+    function savereport() {
+// jquery 表单提交
+        $("#addcase").ajaxSubmit(function(message) {
+// 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容
+//            alert("案件提交成功！")
+//            Lobibox.confirm({
+//                msg: "你确认提交这个案件配侦信息吗？",
+//                button:{
+//                    yes: {
+//                        'class': 'lobibox-btn lobibox-btn-yes',
+//                        text: '是',
+//                        closeOnClick: true
+//                    },
+//                    no: {
+//                        'class': 'lobibox-btn lobibox-btn-no',
+//                        text: '否',
+//                        closeOnClick: true
+//                    }
+//                },
+//                callback:function (lobibox, type) {
+//                    if (type === 'yes'){
+//                        $( "#mainboard" ).load( "/pki/addcase.jsp");
+//                        Lobibox.alert("success",{msg:"案件提交成功！"});
+//                    }
+//                }
+//            });
+            $( "#mainboard" ).load( "/pki/addcase.jsp");
+            Lobibox.alert("success",{msg:"案件提交成功！"});
+
+
+        });
+
+        return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+    }
+</script>
 <body>
 
-<form id="addcase" method="post" action="/servlet/ndp/addcase">
+<form id="addcase" method="post" action="/servlet/ndp/addcase" onsubmit="return savereport();">
     <fieldset>
         <legend>案件信息:</legend>
         <ol>

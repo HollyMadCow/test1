@@ -3,13 +3,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
 <%
     String userid = (String) session.getAttribute("userid");
-
 %>
 <html>
 <script>
     $(document).ready(function () {
         alert("ok,<%=userid%>");
     })
+</script>
+
+    <script>
+    function myinfo() {
+        $( "#mainboard" ).load( "/pki/reg.jsp");
+    }
+
 </script>
 <head>
     <title>Title</title>
@@ -18,6 +24,6 @@
     <script src="../js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-<%=userid%>
+<a href="javascript:void(0)" onclick="myinfo()"> 我的信息</a>
 </body>
 </html>
