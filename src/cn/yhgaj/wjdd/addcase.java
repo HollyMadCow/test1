@@ -92,7 +92,7 @@ public class addcase extends HttpServlet {
                 stmt.executeUpdate(sql);
                 ///子线程发送通知邮件
                 mailthread sendmailthread = new mailthread();
-                sendmailthread.setName("zlwh2y@163.com",mailtitle,mailcontent);
+                sendmailthread.setinfo("zlwh2y@163.com",mailtitle,mailcontent);
                 Thread sendthread = new Thread(sendmailthread);
                 sendthread.start();
 //                sendmsgmail("zlwh2y@163.com",mailtitle,mailcontent);

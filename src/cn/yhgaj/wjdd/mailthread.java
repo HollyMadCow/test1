@@ -7,7 +7,7 @@ public class mailthread implements Runnable {
     private String addr;
     private String title;
     private String content;
-    public void setName(String mailaddr,String mailtitle,String mailcontent)
+    public void setinfo(String mailaddr,String mailtitle,String mailcontent)
     {
         this.addr = mailaddr;
         this.title = mailtitle;
