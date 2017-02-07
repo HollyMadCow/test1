@@ -59,10 +59,16 @@ public class addcase extends HttpServlet {
         String state="提交";
 //        String sqlstr=readconfig.getConfigstr(configpath,"ip");
 
+        String mailtitle;
+        String mailcontent;
 
+        mailtitle=String.format("%s提交案件%s等待您的审批，一次性审批授权码为：%s",caseby,casename,accesscode);
+        mailcontent= String.format("%s%s于%s提交的案件编号：%s，案件名称为：%s等待您的审批，一次性审批授权码为：%s，请尽快处理。",area,caseby,sumbitdate,caseid,casename,accesscode);
 
         String [] addrequestdetail = /*(String [])*/request.getParameterValues("addrequestdetail[]");
         String [] mytext = /*(String [])*/request.getParameterValues("mytext[]");
+
+        ////构造SQL查询语句并查询
         try
         {
             conn = DatabaseConnection.getConnection();
@@ -78,12 +84,18 @@ public class addcase extends HttpServlet {
                     pw.println(obj);
                 }
             }
+
             String sql=String.format("insert into `case` " +
                     "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode,detailfrom,station) " +
                     "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
                     caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station);
                 stmt.executeUpdate(sql);
-//                sendmsgmail("zlwh2y@sina.com",accesscode);
+                ///子线程发送通知邮件
+                mailthread sendmailthread = new mailthread();
+                sendmailthread.setName("zlwh2y@163.com",mailtitle,mailcontent);
+                Thread sendthread = new Thread(sendmailthread);
+                sendthread.start();
+//                sendmsgmail("zlwh2y@163.com",mailtitle,mailcontent);
         }catch (Exception e)
         {
             e.printStackTrace();

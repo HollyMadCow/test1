@@ -310,7 +310,7 @@
         </ol>
     </fieldset>
     <fieldset>
-        <button type="submit" class="center-block" id="submitinput" >提交案件</button>
+        <button type="submit" class="center-block">提交案件</button>
     </fieldset>
 </form>
 
