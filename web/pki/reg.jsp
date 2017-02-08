@@ -18,6 +18,41 @@
     <script>
         $(document).ready(function () {
             console.log(<%=listdata%>);
+            var s=null;
+            var s1=null;
+            var s2=null;
+            var obj=<%=listdata%>;
+///           var arealist=obj.arealist;
+            var arealistarray=obj.arealist.split(";");
+            console.log(arealistarray);
+            //alert(arealistarray.length);
+            var stationlist=obj.stationlist.split(";");
+
+            var usertypelist=obj.usertypelist.split(";");
+            for(var i=0;i<arealistarray.length;i++)
+            {
+//                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
+                s+="<option value=\""+ arealistarray[i] + "\">"+ arealistarray[i]+ "</option>";
+            }
+            for(var i=0;i<stationlist.length;i++)
+            {
+//                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
+                s2+="<option value=\""+ stationlist[i] + "\">"+ stationlist[i]+ "</option>";
+            }
+
+            for(var i=0;i<usertypelist.length;i++)
+            {
+//                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
+                s1+="<option value=\""+ i+ "\">"+ usertypelist[i]+ "</option>";
+            }
+            $( "#area" ).html(s);
+            $( "#usertype" ).html(s1);
+            $( "#station" ).html(s2);
+            <%--var returnlistdata=<%=listdata%>;--%>
+
+
+
+            //alert(list);
         });
 
 
@@ -38,6 +73,7 @@
     <%--</script>--%>
 </head>
 <body>
+<%=listdata%>
 <form id="payment" method="post">
     <fieldset>
         <legend>初次使用信息注册</legend>
@@ -86,21 +122,21 @@
             <li>
                 <label for="area">所属单位：</label>
                 <select name="area" id="area" size="1" required>
-                    <option value="网警大队">网警大队</option>
-                    <option value="玉城派出所">玉城派出所</option>
-                    <option value="坎门派出所">坎门派出所</option>
-                    <option value="楚门派出所">楚门派出所</option>
-                    <option value="清港派出所">清港派出所</option>
-                    <option value="新城派出所">新城派出所</option>
-                    <option value="沙门派出所">沙门派出所</option>
-                    <option value="坎门边防派出所">坎门边防派出所</option>
-                    <option value="大麦屿派出所">大麦屿派出所</option>
-                    <option value="大麦屿边防派出所">大麦屿边防派出所</option>
-                    <option value="干江边防派出所">干江边防派出所</option>
-                    <option value="刑大直属中队">刑大直属中队</option>
-                    <option value="治安大队">治安大队</option>
-                    <option value="有组织犯罪">有组织犯罪</option>
-                    <option value="禁毒大队">禁毒大队</option>
+                    <%--<option value="网警大队">网警大队</option>--%>
+                    <%--<option value="玉城派出所">玉城派出所</option>--%>
+                    <%--<option value="坎门派出所">坎门派出所</option>--%>
+                    <%--<option value="楚门派出所">楚门派出所</option>--%>
+                    <%--<option value="清港派出所">清港派出所</option>--%>
+                    <%--<option value="新城派出所">新城派出所</option>--%>
+                    <%--<option value="沙门派出所">沙门派出所</option>--%>
+                    <%--<option value="坎门边防派出所">坎门边防派出所</option>--%>
+                    <%--<option value="大麦屿派出所">大麦屿派出所</option>--%>
+                    <%--<option value="大麦屿边防派出所">大麦屿边防派出所</option>--%>
+                    <%--<option value="干江边防派出所">干江边防派出所</option>--%>
+                    <%--<option value="刑大直属中队">刑大直属中队</option>--%>
+                    <%--<option value="治安大队">治安大队</option>--%>
+                    <%--<option value="有组织犯罪">有组织犯罪</option>--%>
+                    <%--<option value="禁毒大队">禁毒大队</option>--%>
                 </select>
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
