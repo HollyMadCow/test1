@@ -24,15 +24,11 @@
     function mysearch() {
         if (document.getElementById("searchfiled").value != "")
         {
-
            var keyword = document.getElementById("searchfiled").value;
            $.get("/servlet/ndp/search",{"keyword":keyword},function (data) {
                $("#mainboard").load("/pki/search.jsp",{"return":data})
            });
-//            $("#mainboard").load("/servlet/search");
-//            $( "#mainboard" ).load("/pki/search.jsp",{"keyword":keyword});
-//            $("#mainboard").load("/servlet/search?keyword="+keyword);
-
+            document.getElementById("searchfiled").value = "";
         }
     }
     </script>
@@ -44,8 +40,6 @@
     <%--</script>--%>
     <script>
         function mybusiness() {
-
-//            $( "#mainboard" ).load( "/pki/business.jsp");
             $( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});
         }
     </script>

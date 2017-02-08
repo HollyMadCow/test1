@@ -75,9 +75,20 @@
                 <label for="area">所属单位：</label>
                 <select name="area" id="area" size="1" required>
                     <option value="网警大队">网警大队</option>
-                    <option value="玉城所">玉城所</option>
-                    <option value="坎门所">坎门所</option>
-                    <option value="楚门所">楚门所</option>
+                    <option value="玉城派出所">玉城派出所</option>
+                    <option value="坎门派出所">坎门派出所</option>
+                    <option value="楚门派出所">楚门派出所</option>
+                    <option value="清港派出所">清港派出所</option>
+                    <option value="新城派出所">新城派出所</option>
+                    <option value="沙门派出所">沙门派出所</option>
+                    <option value="坎门边防派出所">坎门边防派出所</option>
+                    <option value="大麦屿派出所">大麦屿派出所</option>
+                    <option value="大麦屿边防派出所">大麦屿边防派出所</option>
+                    <option value="干江边防派出所">干江边防派出所</option>
+                    <option value="刑大直属中队">刑大直属中队</option>
+                    <option value="治安大队">治安大队</option>
+                    <option value="有组织犯罪">有组织犯罪</option>
+                    <option value="禁毒大队">禁毒大队</option>
                 </select>
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
@@ -107,7 +118,7 @@
                     <label for="usertype">人员角色：</label>
                     <select name="usertype" id="usertype" size="1" required>
                         <option value="1">办案民警</option>
-                        <option value="2">办案单位配侦审批人员</option>
+                        <option value="2">办案单位审批人员</option>
                         <option value="3">网警配侦审批人员</option>
                         <option value="4">网警配侦人员</option>
                         <option value="5">局审批人员</option>

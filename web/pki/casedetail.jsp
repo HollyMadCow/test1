@@ -69,7 +69,6 @@
         <a href="#" id="morerequest" class="btn btn-info">添加配侦线索</a></span></p><p style="color: red">最多添加10个</p>
         <ol id="workdetail">
 
-
         </ol>
 
     </fieldset>
