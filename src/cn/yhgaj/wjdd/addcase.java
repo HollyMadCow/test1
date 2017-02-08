@@ -43,6 +43,7 @@ public class addcase extends HttpServlet {
         pw.println(request.getParameter("caseregno"));
         pw.println(request.getParameter("caseregfilename"));
 //        String configpath=request.getServletContext().getRealPath("/");
+        //        String sqlstr=readconfig.getConfigstr(configpath,"ip");
         String caseid=request.getParameter("caseid");
         String casename=request.getParameter("casename");
         String casedetail=request.getParameter("casedetail");
@@ -57,7 +58,7 @@ public class addcase extends HttpServlet {
         String sumbitdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(currentTime);
         String accesscode = autogeneratecode.genauthcode();
         String state="提交";
-//        String sqlstr=readconfig.getConfigstr(configpath,"ip");
+
 
         String mailtitle;
         String mailcontent;

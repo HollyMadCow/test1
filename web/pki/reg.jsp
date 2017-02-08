@@ -2,6 +2,10 @@
 <html lang="cn">
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String listdata = request.getParameter("listdata");
+
+%>
 
 
 <head>
@@ -11,6 +15,14 @@
     <link rel="stylesheet" href="/css/regcss.css">
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log(<%=listdata%>);
+        });
+
+
+
+    </script>
     <%--<script>--%>
 <%--//        function sumbit() {--%>
 <%--//            alert("hello");--%>

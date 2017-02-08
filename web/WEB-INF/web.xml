@@ -45,4 +45,14 @@
         <servlet-name>uploadimg</servlet-name>
         <url-pattern>/servlet/uploadimg</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reguser</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.reguser</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reguser</servlet-name>
+        <url-pattern>/servlet/ndp/reguser</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -45,8 +45,15 @@
     </script>
     <script>
         function myinfo() {
-            $( "#mainboard" ).load( "/pki/reg.jsp");
+//            $( "#mainboard" ).load( "/pki/reg.jsp");
+            $.get("/servlet/ndp/reguser",function (data) {
+                //console.log(data);
+                $("#mainboard").load("/pki/reg.jsp",{"listdata":data})
+            });
+
+
         }
+
     </script>
     <script>
         function addcase() {
