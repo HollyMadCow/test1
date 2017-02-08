@@ -19,12 +19,15 @@ public class reguser extends HttpServlet{
 
                 response.setContentType("text/html;charset=UTF-8");
                 PrintWriter out = response.getWriter();
-//                Properties pros = new Properties();
+                Properties pros;
                 String configpath=request.getServletContext().getRealPath("/");
-
-                String arealist=readconfig.getConfigstr(configpath,"arealist");
-                String stationlist=readconfig.getConfigstr(configpath,"stationlist");
-                String usertypelist =readconfig.getConfigstr(configpath,"usertypelist");
+                pros=readconfig.getConfigstr(configpath);
+                String arealist=pros.getProperty("arealist"); //readconfig.getConfigstr(configpath,"arealist");
+                arealist = new String(arealist.getBytes("ISO8859-1"),  "utf-8");
+                String stationlist=pros.getProperty("stationlist");//String stationlist=readconfig.getConfigstr(configpath,"stationlist");
+                stationlist = new String(stationlist.getBytes("ISO8859-1"),  "utf-8");
+                String usertypelist=pros.getProperty("usertypelist");//String usertypelist =readconfig.getConfigstr(configpath,"usertypelist");
+                usertypelist = new String(usertypelist.getBytes("ISO8859-1"),  "utf-8");
                 JSONObject obj=new JSONObject();
                 try{
 

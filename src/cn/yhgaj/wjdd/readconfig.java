@@ -11,12 +11,12 @@ import javax.servlet.ServletConfig;
 import javax.servlet.http.*;
 
 public class readconfig {
-    public static String getConfigstr(String path,String str) throws IOException{
+    public static Properties getConfigstr(String path) throws IOException{
         String getstr =null;
         Properties p = new Properties();
         p.load(new FileInputStream(path + "config\\config.properties" ));
-        getstr = p.getProperty(str);
-        getstr = new String(getstr.getBytes("ISO8859-1"),  "utf-8");
-        return getstr;
+        //getstr = p.getProperty(str);
+        //getstr = new String(getstr.getBytes("ISO8859-1"),  "utf-8");
+        return p;
     }
 }
