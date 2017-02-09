@@ -2,6 +2,7 @@ package cn.yhgaj.wjdd;
 import java.sql.*;
 import javax.naming.*;
 import javax.sql.DataSource;
+
 public class DatabaseConnection {
     public static Connection getConnection() throws SQLException,NamingException
     {

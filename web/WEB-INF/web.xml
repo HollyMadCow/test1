@@ -55,4 +55,14 @@
         <servlet-name>reguser</servlet-name>
         <url-pattern>/servlet/ndp/reguser</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>mybusiness</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.mybusiness</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mybusiness</servlet-name>
+        <url-pattern>/servlet/ndp/mybusiness</url-pattern>
+    </servlet-mapping>
 </web-app>

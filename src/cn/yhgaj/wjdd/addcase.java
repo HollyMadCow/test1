@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import static cn.yhgaj.wjdd.sendmail.sendmsgmail;
 
 public class addcase extends HttpServlet {
@@ -24,6 +26,7 @@ public class addcase extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        doGet(request, response);
+        HttpSession session = request.getSession();
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -57,6 +60,7 @@ public class addcase extends HttpServlet {
         String detailfrom=request.getParameter("detailfrom");
         String sumbitdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(currentTime);
         String accesscode = autogeneratecode.genauthcode();
+        String sumbitbyid = (String) session.getAttribute("useridfromdatabase");
         String state="提交";
 
 
@@ -87,9 +91,9 @@ public class addcase extends HttpServlet {
             }
 
             String sql=String.format("insert into `case` " +
-                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode,detailfrom,station) " +
-                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
-                    caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station);
+                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode,detailfrom,station,sumbitbyid) " +
+                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station,sumbitbyid);
                 stmt.executeUpdate(sql);
                 ///子线程发送通知邮件
                 mailthread sendmailthread = new mailthread();
