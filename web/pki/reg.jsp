@@ -4,6 +4,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String listdata = request.getParameter("listdata");
+    String regname = (String) session.getAttribute("userrealnamefromkey");
+    String reguserid = (String) session.getAttribute("userid");
 
 %>
 
@@ -17,18 +19,21 @@
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            console.log(<%=listdata%>);
+           <%--// console.log(<%=listdata%>);--%>
             var s=null;
             var s1=null;
             var s2=null;
             var obj=<%=listdata%>;
 ///           var arealist=obj.arealist;
             var arealistarray=obj.arealist.split(";");
-            console.log(arealistarray);
+            //console.log(arealistarray);
             //alert(arealistarray.length);
             var stationlist=obj.stationlist.split(";");
 
             var usertypelist=obj.usertypelist.split(";");
+            $("#name").val("<%=regname%>");
+            $("#userid").val("<%=reguserid%>");
+
             for(var i=0;i<arealistarray.length;i++)
             {
 //                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
@@ -73,7 +78,6 @@
     <%--</script>--%>
 </head>
 <body>
-<%=listdata%>
 <form id="payment" method="post">
     <fieldset>
         <legend>初次使用信息注册</legend>
@@ -165,11 +169,11 @@
                 <li>
                     <label for="usertype">人员角色：</label>
                     <select name="usertype" id="usertype" size="1" required>
-                        <option value="1">办案民警</option>
-                        <option value="2">办案单位审批人员</option>
-                        <option value="3">网警配侦审批人员</option>
-                        <option value="4">网警配侦人员</option>
-                        <option value="5">局审批人员</option>
+                        <%--<option value="1">办案民警</option>--%>
+                        <%--<option value="2">办案单位审批人员</option>--%>
+                        <%--<option value="3">网警配侦审批人员</option>--%>
+                        <%--<option value="4">网警配侦人员</option>--%>
+                        <%--<option value="5">局审批人员</option>--%>
                     </select>
                     <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
                 </li>

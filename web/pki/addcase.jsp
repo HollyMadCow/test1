@@ -73,7 +73,7 @@
                 var name="result";
                 var value=array[name];
                 $("#caseregfilename").val(value);
-                alert(value);
+                //alert(value);
 //                console.dir(array);
 //                alert(array);
 //                alert('文件上传成功！'+data.response);

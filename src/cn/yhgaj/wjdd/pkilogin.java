@@ -30,13 +30,13 @@ public class pkilogin extends HttpServlet{
             throws ServletException,IOException{
        // String usercredit=null;
         HttpSession session = request.getSession();
-        String userid;
         String useriddatabase= null;
         String userkey = "詹凌伟 331021198209300019";
 
         String[] split = userkey.split("\\s+");
         //usercredit = split[0];
-        userid = split[1];
+        String userrealnamefromkey=split[0];
+        String useridfromkey = split[1];
 //        creditinfo=request.getHeader("ssl_client_s_dn_o");
 //todo 需要到时候设置读取证书的内容并判断该证书是否已经注册过，如果未注册则跳转注册，已注册则进行下一步
         Connection conn = null;
@@ -54,7 +54,7 @@ public class pkilogin extends HttpServlet{
 
             conn = DatabaseConnection.getConnection();
             stmt = conn.createStatement();
-            String sql=String.format("select username,userid,longcellphone,shortcellphone,area,realname,email from USER WHERE userid='%s'",userid);
+            String sql=String.format("select username,userid,longcellphone,shortcellphone,area,realname,email from USER WHERE userid='%s'",useridfromkey);
             rs = stmt.executeQuery(sql);
             while(rs.next()){
                 username = rs.getString("username");
@@ -79,7 +79,8 @@ public class pkilogin extends HttpServlet{
         }
 
         session.setAttribute("username",username);
-        session.setAttribute("userid", userid);
+        session.setAttribute("userrealnamefromkey",userrealnamefromkey);
+        session.setAttribute("userid",useridfromkey);
         session.setAttribute("useridfromdatabase", useriddatabase);
         session.setAttribute("cellphone",longcellphone + "/" +shortcellphone);
         session.setAttribute("area",area);

@@ -6,9 +6,11 @@
 <%
 //    String username =(String) request.getAttribute("username");
 //    String userid =(String) request.getAttribute("userid");
-    String username =(String) session.getAttribute("username");
-    String realname =(String) session.getAttribute("realname");
-    String userid =(String) session.getAttribute("userid");
+    //String username =(String) session.getAttribute("username");
+   // String realname =(String) session.getAttribute("realname");
+    String userrealnamefromkey= (String) session.getAttribute("userrealnamefromkey");
+    String userid = (String) session.getAttribute("userid");
+    String useridfromdatabase=(String) session.getAttribute("useridfromdatabase");
 
 %>
 
@@ -40,7 +42,11 @@
     <%--</script>--%>
     <script>
         function mybusiness() {
-            $( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});
+            $.get("/servlet/ndp/business",function (data) {
+                //console.log(data);
+                $("#mainboard").load("/pki/business.jsp",{"listcase":data})
+            });
+            <%--$( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});--%>
         }
     </script>
     <script>
@@ -68,6 +74,18 @@
 
         <%--}--%>
     </script>
+    <script>
+        $(document).ready(function () {
+            var firstregcheck =<%=useridfromdatabase%>;
+            if (firstregcheck==null)
+            {
+                $.get("/servlet/ndp/reguser",function (data) {
+                    //console.log(data);
+                    $("#mainboard").load("/pki/reg.jsp",{"listdata":data})
+                });
+            }
+        })
+    </script>
 </head>
 
 <body>
@@ -83,7 +101,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <%--<a class="navbar-brand" href=""><%=request.getHeader("SSL_CLIENT_S_DN_O")%>，您好！</a>--%>
-                    <a class="navbar-brand" href=""><%=realname%>，您好！</a>
+                    <a class="navbar-brand" href=""><%=userrealnamefromkey%>，您好！</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

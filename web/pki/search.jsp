@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery-3.1.1.min.js"></script>
+    <script>
+        function searchdetail() {
+//        $( "#mainboard" ).load( "business.jsp");
+            window.open("searchdetail.jsp");
+        }
+    </script>
 </head>
 <body>
-<script>
-    function searchdetail() {
-//        $( "#mainboard" ).load( "business.jsp");
-        window.open("searchdetail.jsp");
-    }
-</script>
+
 <table class="table">
     <%--<caption>上下文表格布局</caption>--%>
     <thead>
