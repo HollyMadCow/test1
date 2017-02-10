@@ -1,67 +1,7 @@
-CREATE TABLE area
-(
-    id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    areaname VARCHAR(20) NOT NULL COMMENT '派出所名',
-    belongstation VARCHAR(20) NOT NULL COMMENT '所属分局',
-    belongcity VARCHAR(20) NOT NULL COMMENT '所属市',
-    belongprovince VARCHAR(20) NOT NULL COMMENT '所属省',
-    stationcode INT(11) NOT NULL COMMENT '分局代码',
-    areacode INT(11)
-);
-CREATE TABLE `case`
-(
-    id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    caseid VARCHAR(20) NOT NULL COMMENT '案件编号',
-    casedetail VARCHAR(1000) NOT NULL COMMENT '简要案情',
-    request VARCHAR(1000) NOT NULL COMMENT '配侦要求',
-    area VARCHAR(50) NOT NULL COMMENT '申请单位',
-    caseby VARCHAR(20) NOT NULL COMMENT '经办人 姓名',
-    officerphone VARCHAR(20) NOT NULL COMMENT '联系号码（长短号）',
-    state VARCHAR(10) NOT NULL COMMENT '配侦状态，提交，网警初审，局领导审批中，已分配配侦人员，已配侦，已办结',
-    arealeader VARCHAR(10) COMMENT '分管领导审批 姓名',
-    stationleader VARCHAR(10) COMMENT '局领导审批 姓名',
-    cyberleader VARCHAR(10) COMMENT '网警领导审批 姓名',
-    handlesir VARCHAR(10) COMMENT '配侦人员 姓名',
-    respone VARCHAR(1000) COMMENT '配侦反馈',
-    accesscode VARCHAR(4) COMMENT '审批授权码',
-    caseregno VARCHAR(50) COMMENT '立案决定书文书号',
-    caseregfilename VARCHAR(100) COMMENT '立案决定书文件名',
-    casename VARCHAR(200) COMMENT '案件名称',
-    email VARCHAR(50),
-    sumbitdate DATETIME COMMENT '配侦提交日期',
-    detailfrom VARCHAR(1000) COMMENT '线索来源',
-    station VARCHAR(20) COMMENT '案件所属分局'
-);
-CREATE TABLE logs
-(
-    id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    realname VARCHAR(10) NOT NULL COMMENT '操作人员姓名',
-    opdate DATETIME NOT NULL COMMENT '操作日期',
-    optype VARCHAR(50) NOT NULL COMMENT '操作类型',
-    userid BIGINT(20) NOT NULL
-);
-CREATE INDEX realname ON logs (realname);
-CREATE TABLE test
-(
-    name VARCHAR(100)
-);
-CREATE TABLE user
-(
-    id BIGINT(20) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    username VARCHAR(10) COMMENT '登录用户名',
-    userid VARCHAR(18) COMMENT '身份证',
-    policeid INT(8) NOT NULL COMMENT '警号',
-    longcellphone VARCHAR(20) COMMENT '长号',
-    shortcellphone VARCHAR(10) COMMENT '短号',
-    area VARCHAR(50) NOT NULL COMMENT '哪个所（区域）',
-    realname VARCHAR(10) NOT NULL COMMENT '姓名',
-    email VARCHAR(50) COMMENT '办案人员邮箱',
-    loginkind TINYINT(1) NOT NULL COMMENT '登录类型，pki还是nopki',
-    isadmin TINYINT(1) NOT NULL COMMENT '是否管理员',
-    station VARCHAR(20) NOT NULL COMMENT '所属分局',
-    province VARCHAR(20) NOT NULL COMMENT '省',
-    city VARCHAR(20) NOT NULL COMMENT '地市',
-    department VARCHAR(20) NOT NULL COMMENT '部门',
-    usertype VARCHAR(20) COMMENT '人员类型，办案还是配侦还是审批人员',
-    verifyed TINYINT(1) DEFAULT '0' NOT NULL
-);
+#提交，待网审，待局审，待分配，
+# SELECT area,usertype,station from user where userid='331021198209300019';#登录用户身份查询
+# SELECT * from `case` WHERE sumbitbyid='331021198209300019' ORDER BY sumbitdate DESC ;#办案民警
+# SELECT * from `case` WHERE area='玉城所' ORDER BY sumbitdate DESC ;#所领导
+SELECT * FROM `case` WHERE state!='提交'ORDER BY sumbitdate DESC #网警领导
+SELECT * FROM `case` WHERE state='待局审'ORDER BY sumbitdate DESC #j局领导
+SELECT * FROM `case` WHERE state!='提交'and state!='待网审'ORDER BY sumbitdate DESC #网警经办民警
