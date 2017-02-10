@@ -42,9 +42,10 @@
     <%--</script>--%>
     <script>
         function mybusiness() {
-            $.get("/servlet/ndp/business",function (data) {
+            $.get("/servlet/ndp/mybusiness",function (data) {
                 //console.log(data);
-                $("#mainboard").load("/pki/business.jsp",{"listcase":data})
+                $("#mainboard").load("/pki/business.jsp",{"listcase":data});
+                console.log(data);
             });
             <%--$( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});--%>
         }

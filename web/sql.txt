@@ -1,7 +1,7 @@
-#提交，待网审，待局审，待分配，
+#提交，待网审，待局审，待分配，待配侦，已办结，已反馈
 # SELECT area,usertype,station from user where userid='331021198209300019';#登录用户身份查询
 # SELECT * from `case` WHERE sumbitbyid='331021198209300019' ORDER BY sumbitdate DESC ;#办案民警
 # SELECT * from `case` WHERE area='玉城所' ORDER BY sumbitdate DESC ;#所领导
 SELECT * FROM `case` WHERE state!='提交'ORDER BY sumbitdate DESC #网警领导
-SELECT * FROM `case` WHERE state='待局审'ORDER BY sumbitdate DESC #j局领导
+SELECT * FROM `case` WHERE state='待局审'ORDER BY sumbitdate DESC #局领导
 SELECT * FROM `case` WHERE state!='提交'and state!='待网审'ORDER BY sumbitdate DESC #网警经办民警

@@ -55,7 +55,6 @@ public class search extends HttpServlet {
                 ResultSetMetaData rsmd = rs.getMetaData();
                 int columnCount = rsmd.getColumnCount();
 
-
                 while(rs.next())
                 {
                     JSONObject jsonObj = new JSONObject();
