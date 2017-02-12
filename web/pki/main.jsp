@@ -42,7 +42,7 @@
     <%--</script>--%>
     <script>
         function mybusiness() {
-            $.get("/servlet/ndp/mybusiness",function (data) {
+            $.get("/servlet/ndp/mybusiness?page=1&rows=20",function (data) {
                 //console.log(data);
                 $("#mainboard").load("/pki/business.jsp",{"listcase":data});
                 console.log(data);

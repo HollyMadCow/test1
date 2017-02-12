@@ -4,6 +4,25 @@ import javax.naming.*;
 import javax.sql.DataSource;
 
 public class DatabaseConnection {
+
+
+//    public Connection getConnection1(){
+//        try
+//        {
+//
+//            Context initCtx = new javax.naming.InitialContext();
+//            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+//            DataSource ds = (DataSource)envCtx.lookup("jdbc/ConnectionPool");
+//
+//            return ds.getConnection();
+//
+//        }
+//        catch(Exception e)
+//        {
+//            throw e;
+//        }
+//
+//    }
     public static Connection getConnection() throws SQLException,NamingException
     {
         try

@@ -20,6 +20,31 @@ public class mybusiness extends HttpServlet {
          Connection conn = null;
          Statement stmt = null;
          ResultSet rs = null;
+        ResultSet countrs = null;
+        int count= 0;
+         int page = 0;
+         int rows =20;
+
+        if (request.getParameter("page")!=null)
+        {
+            page=Integer.parseInt(request.getParameter("page"))-1;
+        }
+
+        if (request.getParameter("page")==null || page<0)
+        {
+            page =0;
+        }
+
+        if (request.getParameter("rows")!=null)
+        {
+            rows=Integer.parseInt(request.getParameter("rows"));
+        }
+        if (request.getParameter("rows")==null || rows<0)
+        {
+            rows =20;
+        }
+
+
          //String sqltempstr=null;
 
         PrintWriter out = response.getWriter();
@@ -27,18 +52,24 @@ public class mybusiness extends HttpServlet {
         String userid = (String) session.getAttribute("useridfromdatabase");
 //        String sqlstr=rule.myrule(userid);
         rule userrule = new rule();
-        userrule.setid(userid);
+        userrule.setid(userid,page,rows);
         String sqlstr = userrule.gensqlstr();
+        String countsqlstr=userrule.gencountsqlstr();
         //sqlquery queryrs=new sqlquery();
         //queryrs.setquerysql(sqlstr);
 
         JSONArray array=new JSONArray();
 
-        //JSONObject obj = new JSONObject();
+        JSONObject obj = new JSONObject();
 
         try{
             conn = DatabaseConnection.getConnection();
             stmt = conn.createStatement();
+            countrs = stmt.executeQuery(countsqlstr);
+            while(countrs.next())
+            {
+                count = countrs.getInt(1); // count = rs.getInt("result");
+            }
             rs = stmt.executeQuery(sqlstr);
 
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -55,11 +86,24 @@ public class mybusiness extends HttpServlet {
 
                 }
                 array.put(jsonObj);
+
             }
-            out.println(array);
+            obj.put("count",count);
+            obj.put("data",array);
+            //out.println(array);
+            out.println(obj);
         }catch (Exception e)
         {
             e.printStackTrace();
+        }finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+
         }
 
     }
