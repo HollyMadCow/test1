@@ -83,7 +83,7 @@
         })
         }
         //初始化控件initFileInput(id,uploadurl)控件id，与上传路径
-        initFileInput("caseregfile", "/servlet/uploadimg");
+        initFileInput("caseregfile", "/servlet/uploadimg.do");
 
 
     </script>
@@ -192,7 +192,12 @@
            //
 //            Lobibox.alert("success",{msg:"案件提交成功！"});
              alert("案件提交成功！");
-             $( "#mainboard" ).load( "/pki/business.jsp");
+//             $( "#mainboard" ).load( "/pki/business.jsp");
+            $.get("/servlet/ndp/mybusiness.do?page=1&rows=20",function (data) {
+                //console.log(data);
+                $("#mainboard").load("/pki/business.jsp",{"listcase":data});
+                console.log(data);
+            });
 
         });
 
@@ -201,7 +206,7 @@
 </script>
 <body>
 
-<form id="addcase" method="post" action="/servlet/ndp/addcase" onsubmit="return savereport();">
+<form id="addcase" method="post" action="/servlet/ndp/addcase.do" onsubmit="return savereport();">
     <fieldset>
         <legend>案件信息:</legend>
         <ol>

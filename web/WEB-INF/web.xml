@@ -15,7 +15,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>pkilogin</servlet-name>
-        <url-pattern>/servlet/ndp/pkilogin</url-pattern>
+        <url-pattern>/servlet/ndp/pkilogin.do</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>search</servlet-name>
@@ -24,7 +24,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>search</servlet-name>
-        <url-pattern>/servlet/ndp/search</url-pattern>
+        <url-pattern>/servlet/ndp/search.do</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>addcase</servlet-name>
@@ -33,7 +33,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addcase</servlet-name>
-        <url-pattern>/servlet/ndp/addcase</url-pattern>
+        <url-pattern>/servlet/ndp/addcase.do</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -43,7 +43,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>uploadimg</servlet-name>
-        <url-pattern>/servlet/uploadimg</url-pattern>
+        <url-pattern>/servlet/uploadimg.do</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -53,7 +53,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>reguser</servlet-name>
-        <url-pattern>/servlet/ndp/reguser</url-pattern>
+        <url-pattern>/servlet/ndp/reguser.do</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -63,6 +63,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>mybusiness</servlet-name>
-        <url-pattern>/servlet/ndp/mybusiness</url-pattern>
+        <url-pattern>/servlet/ndp/mybusiness.do</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<form id="addcase" method="post" action="/servlet/ndp/addcase" onsubmit="return savereport();">
+<form id="addcase" method="post" action="/servlet/ndp/addcase.do" onsubmit="return savereport();">
     <fieldset>
         <legend>案件信息:</legend>
         <ol>

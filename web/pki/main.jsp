@@ -27,7 +27,7 @@
         if (document.getElementById("searchfiled").value != "")
         {
            var keyword = document.getElementById("searchfiled").value;
-           $.get("/servlet/ndp/search",{"keyword":keyword},function (data) {
+           $.get("/servlet/ndp/search.do",{"keyword":keyword},function (data) {
                $("#mainboard").load("/pki/search.jsp",{"return":data})
            });
             document.getElementById("searchfiled").value = "";
@@ -41,10 +41,12 @@
     <%--}--%>
     <%--</script>--%>
     <script>
-        function mybusiness() {
-            $.get("/servlet/ndp/mybusiness?page=1&rows=20",function (data) {
+        function mybusiness(p) {
+            var s="/servlet/ndp/mybusiness.do?page="+p+"&rows=20";
+//            $.get("/servlet/ndp/mybusiness.do?page=1&rows=20",function (data) {
+            $.get(s,function (data) {
                 //console.log(data);
-                $("#mainboard").load("/pki/business.jsp",{"listcase":data});
+                $("#mainboard").load("/pki/business.jsp",{"listcase":data,"page":p});
                 console.log(data);
             });
             <%--$( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});--%>
@@ -53,7 +55,7 @@
     <script>
         function myinfo() {
 //            $( "#mainboard" ).load( "/pki/reg.jsp");
-            $.get("/servlet/ndp/reguser",function (data) {
+            $.get("/servlet/ndp/reguser.do",function (data) {
                 //console.log(data);
                 $("#mainboard").load("/pki/reg.jsp",{"listdata":data})
             });
@@ -80,7 +82,7 @@
             var firstregcheck =<%=useridfromdatabase%>;
             if (firstregcheck==null)
             {
-                $.get("/servlet/ndp/reguser",function (data) {
+                $.get("/servlet/ndp/reguser.do",function (data) {
                     //console.log(data);
                     $("#mainboard").load("/pki/reg.jsp",{"listdata":data})
                 });
@@ -136,7 +138,7 @@
                 </div>
 
                 <ul class="list-group">
-                    <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="mybusiness()"> 我的事务</a></li>
+                    <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="mybusiness(1)"> 我的事务</a></li>
                     <li class="list-group-item" style=""><a href="javascript:void(0)" onclick="addcase()"> 提交配侦</a></li>
                     <li class="list-group-item" ><a href="javascript:void(0)" onclick="mysearch()"> 搜    索</a></li>
                     <li class="list-group-item" ><a href="javascript:void(0)" onclick="myinfo()"> 我的信息</a></li>
