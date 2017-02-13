@@ -40,7 +40,7 @@
         $(document).ready(function () {
            var listcase=<%=list%>;
            var p=<%=p%>;
-           var casecount=listcase.count;
+           var casecount=parseInt(listcase.count) ;
            var casedata = listcase.data;
            var id;
            var caseid;
@@ -49,18 +49,61 @@
            var area;
            var caseby;
            var state;
+            var maxpagenum;
 //           var request;
            var s=null;
+           var s1=null;
+           var sstart=null;
+           var send=null;
+           var sbody="";
+           if (casecount<20){
+               maxpagenum=1;
+           }
+           else if (casecount>20 && casecount/20==0)
+           {
+                maxpagenum= parseInt(casecount/20);
+           }
+           else if (casecount>20 && casecount/20!=0){
+               maxpagenum=parseInt(casecount/20)+1;
+           }
+            sstart="<li ><a href=\"javascript:void(0)\" onclick=\"mybusiness(1)\">&laquo;</a></li>";
+           send="<li><a href=\"javascript:void(0)\" onclick=\"mybusiness("+maxpagenum+")\">&raquo;</a></li>";
+           for (var m=1;m<maxpagenum+1;m++)
+           {
+               if(m==parseInt(p))
+               {
+                   sbody+="<li class=\"active\"><a>"+m+"</a></li>";
+               }
+               else {
+                   sbody+="<li><a href=\"javascript:void(0)\" onclick=\"mybusiness("+m+")\">"+m+"</a></li>";
+               }
+
+           }
+           s1=sstart+sbody+send;
+            //console.log(s1);
+           //console.log(sstart);
+           //console.log(sbody);
+           //console.log(send);
 
            for(var i in casedata){
                 id=casedata[i].id;
-                var num=parseInt(i)+1;
+               var num;
+                if(parseInt(p)==1)
+                {
+                    num=parseInt(i)+1;
+                }
+                if (parseInt(p)>1)
+                {
+                    num=parseInt(i)+1+(parseInt(p)-1)*20;
+                }
+
                 caseid=casedata[i].caseid;
                 casename=casedata[i].casename;
                 sumbitdate=casedata[i].sumbitdate;
 //                request=casedata[i].request;
-//               var d = new Date(Date.parse(sumbitdate.replace(/-/g, "/")));
-//               var d1=formatDate(d);
+               var d = new Date(Date.parse(sumbitdate.replace(/-/g, "/")));
+
+               var d1=formatDate(d);
 //               console.log(d1);
 //                var d=  (new Date(sumbitdate)).getTime();
               // var time2 = new Date().format("yyyy-MM-dd");
@@ -75,7 +118,7 @@
                     "<td>"+casename+"</td>"+
                     "<td>"+caseby+"</td>"+
                     "<td>"+area+"</td>"+
-                    "<td>"+sumbitdate+"</td>"+
+                    "<td>"+d1+"</td>"+
                     "<td>"+state+"</td>"+
                     "<td><a href=\"/pki/casedetail.jsp?id=" +id+" \" target=\"_blank\">详细</a></td>"+
                    "</tr>"
@@ -83,44 +126,46 @@
                //alert(casedata[i].area)
            }
             $( "#casebody" ).html(s);
+            $( "#splitpage" ).html(s1);
+            console.log(s1);
 //            console.log(request.replace("\\",""));
            //console.log(casedata);
         });
     </script>
 </head>
 <body>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <fieldset>
-                <legend>过滤项目：</legend>
-                <ol>
-                    <li>
-                        <label >案件状态:</label>
-                        <select name="state" id="state" size="1"  required>
-                            <option value="1">办案民警</option>
-                            <option value="2">办案单位审批人员</option>
-                            <option value="3">网警配侦审批人员</option>
-                            <option value="4">网警配侦人员</option>
-                            <option value="5">局审批人员</option>
-                        </select>
-                        <label >简要案情:</label>
-                        <select name="usertype" id="usertype" size="1" required>
-                            <option value="1">办案民警</option>
-                            <option value="2">办案单位审批人员</option>
-                            <option value="3">网警配侦审批人员</option>
-                            <option value="4">网警配侦人员</option>
-                            <option value="5">局审批人员</option>
-                        </select>
-                    </li>
+<%--<div class="container">--%>
+    <%--<div class="row clearfix">--%>
+        <%--<div class="col-md-12 column">--%>
+            <%--<fieldset>--%>
+                <%--<legend>过滤项目：</legend>--%>
+                <%--<ol>--%>
+                    <%--<li>--%>
+                        <%--<label >案件状态:</label>--%>
+                        <%--<select name="state" id="state" size="1"  required>--%>
+                            <%--<option value="1">办案民警</option>--%>
+                            <%--<option value="2">办案单位审批人员</option>--%>
+                            <%--<option value="3">网警配侦审批人员</option>--%>
+                            <%--<option value="4">网警配侦人员</option>--%>
+                            <%--<option value="5">局审批人员</option>--%>
+                        <%--</select>--%>
+                        <%--<label >简要案情:</label>--%>
+                        <%--<select name="usertype" id="usertype" size="1" required>--%>
+                            <%--<option value="1">办案民警</option>--%>
+                            <%--<option value="2">办案单位审批人员</option>--%>
+                            <%--<option value="3">网警配侦审批人员</option>--%>
+                            <%--<option value="4">网警配侦人员</option>--%>
+                            <%--<option value="5">局审批人员</option>--%>
+                        <%--</select>--%>
+                    <%--</li>--%>
 
 
-                </ol>
-            </fieldset>
+                <%--</ol>--%>
+            <%--</fieldset>--%>
 
 
-        </div>
-    </div>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
 
 <table class="table">
@@ -238,14 +283,14 @@
 </table>
 
 <nav style="text-align: center">
-    <ul class="pagination" >
-        <li ><a href="#">&laquo;</a></li>
-        <li class="active"><a>1</a></li>
-        <li><a>2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
+    <ul class="pagination" id="splitpage">
+        <%--<li ><a href="#" onclick="mybusiness(1)">&laquo;</a></li>--%>
+        <%--<li class="active"><a>1</a></li>--%>
+        <%--<li><a>2</a></li>--%>
+        <%--<li><a href="#">3</a></li>--%>
+        <%--<li><a href="#">4</a></li>--%>
+        <%--<li><a href="#">5</a></li>--%>
+        <%--<li><a href="#" onclick="mybusiness()">&raquo;</a></li>--%>
     </ul>
 </nav>
 </body>

@@ -6,6 +6,7 @@
     String listdata = request.getParameter("listdata");
     String regname = (String) session.getAttribute("userrealnamefromkey");
     String reguserid = (String) session.getAttribute("userid");
+    String userarea = (String) session.getAttribute("area");
 
 %>
 
@@ -24,6 +25,7 @@
             var s1=null;
             var s2=null;
             var obj=<%=listdata%>;
+            var userarea="<%=userarea%>";
 ///           var arealist=obj.arealist;
             var arealistarray=obj.arealist.split(";");
             //console.log(arealistarray);
@@ -36,8 +38,17 @@
 
             for(var i=0;i<arealistarray.length;i++)
             {
+                if(arealistarray[i]==userarea)
+                {
+                    s+="<option value=\""+ arealistarray[i] + "\" selected = \"selected\">"+ arealistarray[i]+ "</option>";
+//                    console.log(s)
+                }
+                else
+                {
+                    s+="<option value=\""+ arealistarray[i] + "\">"+ arealistarray[i]+ "</option>";
+                }
 //                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
-                s+="<option value=\""+ arealistarray[i] + "\">"+ arealistarray[i]+ "</option>";
+
             }
             for(var i=0;i<stationlist.length;i++)
             {
