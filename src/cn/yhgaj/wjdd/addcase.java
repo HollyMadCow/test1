@@ -20,7 +20,32 @@ public class addcase extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        //doPost(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        //Properties pros;
+        String configpath=request.getServletContext().getRealPath("/");
+        String arealist=readconfig.getConfigstr(configpath,"arealist");
+        String stationlist=readconfig.getConfigstr(configpath,"stationlist");
+       // String usertypelist=readconfig.getConfigstr(configpath,"usertypelist");
+
+        JSONObject obj=new JSONObject();
+        try{
+
+            //String name ="arealist";
+            obj.put("arealist",arealist);
+            // System.out.print(obj);
+            // name ="stationlist";
+            obj.put("stationlist",stationlist);
+            //System.out.print(obj);
+            //name ="usertypelist";
+            //obj.put("usertypelist",usertypelist);
+            //System.out.print(obj);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        out.println(obj);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

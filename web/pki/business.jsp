@@ -49,13 +49,17 @@
            var area;
            var caseby;
            var state;
-            var maxpagenum;
+           var maxpagenum;
 //           var request;
            var s=null;
-           var s1=null;
-           var sstart=null;
-           var send=null;
+//           var s1=null;
+           var s1;
+//           var sstart=null;
+           var sstart;
+//           var send=null;
+           var send;
            var sbody="";
+//            var sbody
            if (casecount<20){
                maxpagenum=1;
            }
@@ -112,7 +116,7 @@
                 caseby=casedata[i].caseby;
                 state=casedata[i].state;
                 s+="<tr class=\"active\">"+
-                    "<td><input type=\"checkbox\"> </td>"+
+                    "<td><input type=\"checkbox\"></td>"+
                     "<td>"+num+"</td>"+
                     "<td>"+caseid+"</td>"+
                     "<td>"+casename+"</td>"+

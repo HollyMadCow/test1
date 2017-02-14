@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 
 public class pkilogin extends HttpServlet{
     public void init() throws ServletException{
-        System.out.print("我是init()方法！用来进行初始化工作");
+        //System.out.print("我是init()方法！用来进行初始化工作");
     }
     public void doGet(HttpServletRequest request,HttpServletResponse response)
             throws ServletException,IOException{
@@ -70,6 +70,7 @@ public class pkilogin extends HttpServlet{
             e.printStackTrace();
         }finally{
             try{
+
                 if(rs != null) rs.close();
                 if(stmt != null) stmt.close();
                 if(conn != null) conn.close();
@@ -113,6 +114,6 @@ public class pkilogin extends HttpServlet{
 
     public void destroy() {
         super.destroy();
-        System.out.println("我是destroy()方法！用来进行销毁实例的工作");
+        //System.out.println("我是destroy()方法！用来进行销毁实例的工作");
     }
 }

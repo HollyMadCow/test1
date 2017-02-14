@@ -66,7 +66,11 @@
     </script>
     <script>
         function addcase() {
-            $( "#mainboard" ).load( "/pki/addcase.jsp");
+            //$( "#mainboard" ).load( "/pki/addcase.jsp");
+            $.get("/servlet/ndp/addcase.do",function (data) {
+                //console.log(data);
+                $("#mainboard").load("/pki/addcase.jsp",{"listdata":data})
+            });
         }
         <%--window.onload=function () {--%>
             <%--var firstregcheck=<%=userid%>;--%>

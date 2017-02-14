@@ -12,6 +12,7 @@
     String area1 = (String) session.getAttribute("area");
     String realname = (String) session.getAttribute("realname");
     String email = (String) session.getAttribute("email");
+    String listdata = request.getParameter("listdata");
 %>
 
 
@@ -143,10 +144,43 @@
 
     <script>
         $(document).ready(function () {
+            var s=null;
+            var userarea="<%=area1%>";
+            var s2=null;
+            var obj=<%=listdata%>;
+            console.log(obj);
+            var arealistarray=obj.arealist.split(";");
+            //console.log(arealistarray);
+            //alert(arealistarray.length);
+            var stationlist=obj.stationlist.split(";");
+
+            for(var i=0;i<arealistarray.length;i++)
+            {
+                if(arealistarray[i]==userarea)
+                {
+                    s+="<option value=\""+ arealistarray[i] + "\" selected = \"selected\">"+ arealistarray[i]+ "</option>";
+//                    console.log(s)
+                }
+                else
+                {
+                    s+="<option value=\""+ arealistarray[i] + "\">"+ arealistarray[i]+ "</option>";
+                }
+//                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
+
+            }
+            for(var i=0;i<stationlist.length;i++)
+            {
+//                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
+                s2+="<option value=\""+ stationlist[i] + "\">"+ stationlist[i]+ "</option>";
+            }
+            $( "#area" ).html(s);
+            //$( "#usertype" ).html(s1);
+            $( "#station" ).html(s2);
+            //var usertypelist=obj.usertypelist.split(";");
             $("#caseby").val('<%=realname%>');
             <%--<!--$('#caseby').attr("value", <%=realname%>);-->--%>
             $("#officerphone").val('<%=cellphone%>');
-            $("#area").val('<%=area1%>');
+            <%--$("#area").val('<%=area1%>');--%>
             $("#email").val('<%=email%>');
             //alert(document.getElementById("caseby").value);
         })
