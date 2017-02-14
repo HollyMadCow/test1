@@ -91,4 +91,15 @@
         <servlet-name>mybusiness</servlet-name>
         <url-pattern>/servlet/ndp/mybusiness.do</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>casedetail</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.casedetail</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>casedetail</servlet-name>
+        <url-pattern>/servlet/ndp/casedetail.do</url-pattern>
+    </servlet-mapping>
 </web-app>

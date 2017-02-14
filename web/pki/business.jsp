@@ -124,7 +124,8 @@
                     "<td>"+area+"</td>"+
                     "<td>"+d1+"</td>"+
                     "<td>"+state+"</td>"+
-                    "<td><a href=\"/pki/casedetail.jsp?id=" +id+" \" target=\"_blank\">详细</a></td>"+
+//                    "<td><a href=\"/pki/casedetail.jsp?id=" +id+" \" target=\"_blank\">详细</a></td>"+
+                    "<td><a href=\"/servlet/ndp/casedetail.do?id=" +id+" \" target=\"_blank\">详细</a></td>"+
                    "</tr>"
 
                //alert(casedata[i].area)
