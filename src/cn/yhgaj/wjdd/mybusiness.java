@@ -52,7 +52,8 @@ public class mybusiness extends HttpServlet {
         String userid = (String) session.getAttribute("useridfromdatabase");
 //        String sqlstr=rule.myrule(userid);
         rule userrule = new rule();
-        userrule.setid(userid,page,rows);
+        userrule.setid(userid);//,page,rows);
+        userrule.setpagerow(page,rows);
         String sqlstr = userrule.gensqlstr();
         String countsqlstr=userrule.gencountsqlstr();
         //sqlquery queryrs=new sqlquery();

@@ -108,9 +108,9 @@
                     //add input box
                     $(InputsWrapper).append('<div xmlns="http://www.w3.org/1999/html">' +
                         '<select name="addrequestdetail[]" id="addrequestdetail" size="1" required> ' +
-                        '<option value="姓名">姓名</option>' +
-                        '<option value="身份证">身份证</option>' +
-                        '<option value="现居住地">现居住地</option>' +
+                        '<option value="姓名身份证">姓名身份证</option>' +
+//                        '<option value="身份证">身份证</option>' +
+//                        '<option value="现居住地">现居住地</option>' +
                         '<option value="QQ">QQ</option>' +
                         '<option value="微信">微信</option>' +
                         '<option value="手机号码">手机号码</option>' +

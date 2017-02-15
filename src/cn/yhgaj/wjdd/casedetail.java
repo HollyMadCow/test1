@@ -25,8 +25,14 @@ public class casedetail extends HttpServlet{
         ResultSet rs = null;
         HttpSession session = request.getSession();
         String userid = (String) session.getAttribute("useridfromdatabase");
-        String id=request.getParameter("id");
-        sqlstr=String.format("select * from `case` where id='%s'",id);
+        String usertype = (String) session.getAttribute("usertype");
+        String caseid=request.getParameter("id");
+        rule userrule=new rule();
+        userrule.setid(userid);
+        userrule.setcaseid(caseid);
+        sqlstr=userrule.Showcasedetail();
+//        sqlstr=String.format("select * from `case` where id='%s'",caseid);
+
         //Properties pros;
 //        String configpath=request.getServletContext().getRealPath("/");
 //        String arealist=readconfig.getConfigstr(configpath,"arealist");
