@@ -3,6 +3,8 @@ package cn.yhgaj.wjdd;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.*;
@@ -53,14 +55,17 @@ public class casedetail extends HttpServlet{
 
                     String columnName =rsmd.getColumnLabel(i);
                     String value = rs.getString(columnName);
-                    obj.put(columnName, value);
+                    //obj.put(columnName, value);
+                    request.setAttribute(columnName,value);
 
                 }
                 //array.put(obj);
 
             }
-            out.println(obj);
+            //out.println(obj);
 
+            RequestDispatcher de=request.getRequestDispatcher("/pki/casedetail.jsp");
+            de.forward(request, response);
             //String name ="arealist";
 //            obj.put("arealist",arealist);
 //            // System.out.print(obj);

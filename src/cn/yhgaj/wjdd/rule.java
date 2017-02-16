@@ -56,7 +56,7 @@ public class rule {
                 switch (usertype)
                 {
                     case "办案民警":
-                        sqltempstr = String.format("SELECT * from `case` WHERE sumbitbyid='%s' ORDER BY sumbitdate DESC LIMIT %s,%s",userid,page*row,row);
+                        sqltempstr = String.format("SELECT id,caseid,casename,caseby,area,sumbitdate,state FROM `case` where sumbitbyid='%s' ORDER BY sumbitdate DESC LIMIT %s,%s",userid,page*row,row);
                         break;
                     case "办案单位审核人员":
                         sqltempstr = String.format("SELECT * from `case` WHERE area='%s' ORDER BY sumbitdate DESC",area);
@@ -187,7 +187,9 @@ public class rule {
                         if(rs1.next()){
                              count = rs1.getInt(1);
                              if (count>0){
-                                 sqltempstr=String.format("SELECT * from `case` WHERE id=%s ORDER BY sumbitdate DESC",id);
+                                 sqltempstr=String.format("SELECT caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
+                                         "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom " +
+                                         "FROM `case`where id=%s",id);
                              }else {
                                  sqlstr=null;
                              }
