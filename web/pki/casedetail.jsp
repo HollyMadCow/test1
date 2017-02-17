@@ -24,7 +24,7 @@ String sumbitdate=(String) request.getAttribute("sumbitdate");
 String handlesir=(String) request.getAttribute("handlesir");;
 String respone=(String) request.getAttribute("respone");
 String detailfrom=(String) request.getAttribute("detailfrom");
-String host="https://172.16.210.251/uploadimage/";
+String host="https://192.168.2.1141/uploadimage/";
 
 %>
 
@@ -153,6 +153,10 @@ $(document).ready(function () {
             <li>
                 <label for="caseby">经办民警:</label>
                 <input id="caseby" name="caseby" type="text" readonly value="<%=caseby%>" >
+            </li>
+            <li>
+                <label for="officerphone">民警电话:</label>
+                <input id="officerphone" name="caseby" type="text" readonly value="<%=officerphone%>" >
             </li>
 
         </ol>

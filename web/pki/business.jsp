@@ -116,7 +116,7 @@
                 caseby=casedata[i].caseby;
                 state=casedata[i].state;
                 s+="<tr class=\"active\">"+
-                    "<td><input type=\"checkbox\"></td>"+
+//                    "<td><input type=\"checkbox\"></td>"+
                     "<td>"+num+"</td>"+
                     "<td>"+caseid+"</td>"+
                     "<td>"+casename+"</td>"+
@@ -190,7 +190,7 @@
             <%--<th>侦办单位</th>--%>
             <%--<th>提交日期</th>--%>
             <%--<th>案件详情</th>--%>
-            <td width="5%" align="left">选择</td>
+            <%--<td width="5%" align="left">选择</td>--%>
             <td width="5%" align="left">序号</td>
             <td width="20%" align="left">案件编号</td>
             <td width="25%" align="left">案件名称</td>
