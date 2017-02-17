@@ -24,6 +24,7 @@ String sumbitdate=(String) request.getAttribute("sumbitdate");
 String handlesir=(String) request.getAttribute("handlesir");;
 String respone=(String) request.getAttribute("respone");
 String detailfrom=(String) request.getAttribute("detailfrom");
+String host="https://172.16.210.251/uploadimage/";
 
 %>
 
@@ -33,7 +34,7 @@ String detailfrom=(String) request.getAttribute("detailfrom");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/addcasecss.css">
+    <link rel="stylesheet" href="/css/casedetailcss.css">
     <link rel="stylesheet" href="/js/dist/css/lobibox.min.css">
     <link media="all" rel="stylesheet" type="text/css" href="/fileinput/css/fileinput.min.css">
 
@@ -75,20 +76,43 @@ $(document).ready(function () {
 </script>
 <body>
 
-<form id="addcase" method="post" action="/servlet/ndp/addcase.do" onsubmit="return savereport();">
+<form id="showcasedetail" method="post" action="" onsubmit="">
     <fieldset>
         <legend>案件信息:</legend>
-        <ol>
+        <ol id="caseinfo">
             <li>
                 <label for="caseid">案件编号：</label>
-                <input id="caseid" name="caseid" type="text" readonly placeholder="案件编号" required autofocus>
+                <input id="caseid" name="caseid" type="text" value="<%=caseid%>" readonly>
             </li>
+            <li>
+                <label for="casename">案件名称:</label>
+                <input id="casename" name="casename" type="text" value="<%=casename%>" readonly>
+            </li>
+            <li>
+                <label for="casedetail">简要案情:</label>
+                <textarea id="casedetail" cols="50" name="casedetail" rows="10"  readonly><%=casedetail%></textarea>
+            </li>
+            <li>
+                <label for="caseregno">立案决定书：</label>
+                <input id="caseregno" name="caseregno" type="text" value="<%=caseregno%>" readonly>
+                <a href=<%=host%><%=caseregfilename%> id="caseregnofile" class="btn btn-info" target="_blank">点击查看文书</a>
+            </li>
+            <%--<li>--%>
+                <%--<label for="caseregfile">上传文书:</label>--%>
+                <%--&lt;%&ndash;<label>上传文书:</label>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<input id="caseregfile" type="file" class="file-loading" multiple accept="image/*" required>&ndash;%&gt;--%>
+                <%--<input id="caseregfile"  name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*">--%>
+                <%--&lt;%&ndash;<input type="file" data-show-caption="true" multiple accept="image/*">&ndash;%&gt;--%>
+                <%--<input type="text" style="visibility: hidden" id="caseregfilename" name="caseregfilename">--%>
+
+            <%--</li>--%>
+
         </ol>
     </fieldset>
     <fieldset>
         <legend>配侦详情:</legend>
         <%--<button type="button" class="center-block" id="morerequest" onclick="add()">添加配侦内容</button>--%>
-        <a href="#" id="morerequest" class="btn btn-info">添加配侦线索</a></span></p><p style="color: red">最多添加10个</p>
+        <%--<a href="#" id="morerequest" class="btn btn-info">添加配侦线索</a></span></p><p style="color: red">最多添加10个</p>--%>
         <ol id="workdetail">
 
         </ol>
@@ -99,8 +123,8 @@ $(document).ready(function () {
         <ol>
             <li>
                 <label for="detailfrom">线索来源:</label>
-                <textarea id="detailfrom" cols="50" name="detailfrom" rows="3" placeholder="请填写线索来源"></textarea>
-                <p style="color: red">未填写或不能通过审核</p>
+                <textarea id="detailfrom" cols="50" readonly name="detailfrom" rows="3"><%=casedetail%></textarea>
+
             </li>
         </ol>
     </fieldset>
@@ -115,29 +139,48 @@ $(document).ready(function () {
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
             <li>
-                <label for="area">所属单位：</label>
-                <select name="area" id="area" size="1" required>
-                    <option value="网警大队">网警大队</option>
-                    <option value="玉城所">玉城所</option>
-                    <option value="坎门所">坎门所</option>
-                    <option value="楚门所">楚门所</option>
-                    <option value="刑大直属中队">刑大直属中队</option>
-                </select>
+                <label>所属单位：</label>
+                <p><%=area%></p>
                 <%--<textarea id="address" name="address" rows="1" required></textarea>--%>
             </li>
 
         </ol>
     </fieldset>
     <fieldset>
-        <legend>职务信息:</legend>
+        <legend>经办信息:</legend>
         <ol>
 
             <li>
                 <label for="caseby">经办民警:</label>
-                <input id="caseby" name="caseby" type="text" placeholder="姓名" required>
+                <input id="caseby" name="caseby" type="text" readonly value="<%=caseby%>" >
             </li>
 
-
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>案件状态：</legend>
+        <ol>
+            <li>
+                <label >审批状态:</label>
+                <a><%=state%></a>
+            </li>
+            <li>
+                <label >所领导审批:</label>
+                <a>未审核</a>
+            </li>
+            <li>
+                <label >网警初审:</label>
+                <a>未审核</a>
+            </li>
+            <li>
+                <label >局领导审批:</label>
+                <a>未审核</a>
+            </li>
+            <li>
+                <label for="accesscode">>审批码:</label>
+                <input id="accesscode" name="caseby" type="text" placeholder="输入4位授权码" >
+                </span></p><p style="color: red">在每一级的审核中，都会有一个相应授权码发送到该次审核人员处</p>
+            </li>
         </ol>
     </fieldset>
     <fieldset>
