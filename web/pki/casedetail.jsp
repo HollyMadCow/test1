@@ -177,7 +177,7 @@ $(document).ready(function () {
                 <a>未审核</a>
             </li>
             <li>
-                <label for="accesscode">>审批码:</label>
+                <label for="accesscode">审批码:</label>
                 <input id="accesscode" name="caseby" type="text" placeholder="输入4位授权码" >
                 </span></p><p style="color: red">在每一级的审核中，都会有一个相应授权码发送到该次审核人员处</p>
             </li>
