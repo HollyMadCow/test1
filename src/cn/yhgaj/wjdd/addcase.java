@@ -27,6 +27,7 @@ public class addcase extends HttpServlet {
         String configpath=request.getServletContext().getRealPath("/");
         String arealist=readconfig.getConfigstr(configpath,"arealist");
         String stationlist=readconfig.getConfigstr(configpath,"stationlist");
+        String sumbitto=readconfig.getConfigstr(configpath,"sumbitto");
        // String usertypelist=readconfig.getConfigstr(configpath,"usertypelist");
 
         JSONObject obj=new JSONObject();
@@ -37,6 +38,7 @@ public class addcase extends HttpServlet {
             // System.out.print(obj);
             // name ="stationlist";
             obj.put("stationlist",stationlist);
+            obj.put("sumbitto",sumbitto);
             //System.out.print(obj);
             //name ="usertypelist";
             //obj.put("usertypelist",usertypelist);
@@ -79,6 +81,7 @@ public class addcase extends HttpServlet {
         String caseregfilename=request.getParameter("caseregfilename");
         String station=request.getParameter("station");
         String area=request.getParameter("area");
+        String sumbitto=request.getParameter("sumbittodepartement");
         String caseby=request.getParameter("caseby");
         String officerphone=request.getParameter("officerphone");
         String email=request.getParameter("email");
@@ -116,9 +119,9 @@ public class addcase extends HttpServlet {
             }
 
             String sql=String.format("insert into `case` " +
-                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode,detailfrom,station,sumbitbyid) " +
-                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
-                    caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station,sumbitbyid);
+                    "(caseid,casename,casedetail,request, area, caseby, officerphone, state,caseregno, caseregfilename,email,sumbitdate,accesscode,detailfrom,station,sumbitbyid,sumbitto) " +
+                    "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');",
+                    caseid,casename,casedetail,/*array*/obj,area,caseby,officerphone,state,caseregno,caseregfilename,email,sumbitdate,accesscode,detailfrom,station,sumbitbyid,sumbitto);
                 stmt.executeUpdate(sql);
                 ///子线程发送通知邮件
                 mailthread sendmailthread = new mailthread();

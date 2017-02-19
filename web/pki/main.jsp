@@ -47,7 +47,7 @@
             $.get(s,function (data) {
                 //console.log(data);
                 $("#mainboard").load("/pki/business.jsp",{"listcase":data,"page":p});
-                console.log(data);
+                //console.log(data);
             });
             <%--$( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});--%>
         }

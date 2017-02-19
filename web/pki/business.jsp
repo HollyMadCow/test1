@@ -132,7 +132,7 @@
            }
             $( "#casebody" ).html(s);
             $( "#splitpage" ).html(s1);
-            console.log(s1);
+            //console.log(s1);
 //            console.log(request.replace("\\",""));
            //console.log(casedata);
         });

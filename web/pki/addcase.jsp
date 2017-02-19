@@ -148,12 +148,14 @@
             var userarea="<%=area1%>";
             var s2=null;
             var obj=<%=listdata%>;
-            console.log(obj);
+            var s3=null;
+            //console.log(obj);
             var arealistarray=obj.arealist.split(";");
             //console.log(arealistarray);
             //alert(arealistarray.length);
             var stationlist=obj.stationlist.split(";");
-
+            var sumbitto=obj.sumbitto.split(";");
+            //console.log(obj);
             for(var i=0;i<arealistarray.length;i++)
             {
                 if(arealistarray[i]==userarea)
@@ -173,9 +175,16 @@
 //                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
                 s2+="<option value=\""+ stationlist[i] + "\">"+ stationlist[i]+ "</option>";
             }
+            for(var i=0;i<sumbitto.length;i++)
+            {
+//                s+='<option value="'+arealistarray[i] +'">网警大队</option>'
+                s3+="<option value=\""+ sumbitto[i] + "\">"+ sumbitto[i]+ "</option>";
+            }
+
             $( "#area" ).html(s);
             //$( "#usertype" ).html(s1);
             $( "#station" ).html(s2);
+            $( "#sumbittodepartement" ).html(s3);
             //var usertypelist=obj.usertypelist.split(";");
             $("#caseby").val('<%=realname%>');
             <%--<!--$('#caseby').attr("value", <%=realname%>);-->--%>
@@ -229,8 +238,8 @@
 //             $( "#mainboard" ).load( "/pki/business.jsp");
             $.get("/servlet/ndp/mybusiness.do?page=1&rows=20",function (data) {
                 //console.log(data);
-                $("#mainboard").load("/pki/business.jsp",{"listcase":data});
-                console.log(data);
+                $("#mainboard").load("/pki/business.jsp",{"listcase":data,"page":"1"});
+                //console.log(data);
             });
 
         });
@@ -282,16 +291,31 @@
         </ol>
 
     </fieldset>
+
    <fieldset>
-       <legend>线索来源:</legend>
-       <ol>
-           <li>
-               <label for="detailfrom">线索来源:</label>
-               <textarea id="detailfrom" cols="50" name="detailfrom" rows="3" placeholder="请填写线索来源"></textarea>
-               <p style="color: red">未填写或不能通过审核</p>
-           </li>
-       </ol>
-   </fieldset>
+    <legend>线索来源:</legend>
+    <ol>
+        <li>
+            <label for="detailfrom">线索来源:</label>
+            <textarea id="detailfrom" cols="50" name="detailfrom" rows="3" placeholder="请填写线索来源"></textarea>
+            <p style="color: red">未填写或不能通过审核</p>
+        </li>
+    </ol>
+    </fieldset>
+
+    <fieldset>
+        <legend>配侦受理单位:</legend>
+        <ol>
+            <li>
+                <label for="sumbittodepartement">配侦受理单位:</label>
+                <select name="sumbittodepartement" id="sumbittodepartement" size="1" required>
+
+                </select>
+
+            </li>
+        </ol>
+    </fieldset>
+
     <fieldset>
         <legend>单位信息:</legend>
         <ol>
