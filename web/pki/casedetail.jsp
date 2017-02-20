@@ -24,7 +24,8 @@ String sumbitdate=(String) request.getAttribute("sumbitdate");
 String handlesir=(String) request.getAttribute("handlesir");;
 String respone=(String) request.getAttribute("respone");
 String detailfrom=(String) request.getAttribute("detailfrom");
-String host="https://192.168.2.1141/uploadimage/";
+String sumbitto=(String) request.getAttribute("sumbitto");
+String host="http://172.16.210.251/uploadimage/";
 
 %>
 
@@ -53,49 +54,64 @@ String host="https://192.168.2.1141/uploadimage/";
 </head>
 <script>
 $(document).ready(function () {
-    var caseid="<%=caseid%>";
+    <%--var caseid="<%=caseid%>";--%>
     var clientrequest=<%=clientrequest%>;
-    var casename="<%=casename%>";
-    var casedetail="<%=casedetail%>";
-    var caseregno="<%=caseregno%>";
-    var caseregfilename="<%=caseregfilename%>";
-    var area="<%=area%>";
-    var caseby="<%=caseby%>";
-    var officerphone="<%=officerphone%>";
-    var state="<%=state%>";
-    var sumbitdate="<%=sumbitdate%>";
-    var handlesir="<%=handlesir%>";
-    var respone="<%=respone%>";
-    var detailfrom="<%=detailfrom%>";
-    //alert(d);
+    <%--var casename="<%=casename%>";--%>
+    <%--var casedetail="<%=casedetail%>";--%>
+    <%--var caseregno="<%=caseregno%>";--%>
+    <%--var caseregfilename="<%=caseregfilename%>";--%>
+    <%--var area="<%=area%>";--%>
+    <%--var caseby="<%=caseby%>";--%>
+    <%--var officerphone="<%=officerphone%>";--%>
+    <%--var state="<%=state%>";--%>
+    <%--var sumbitdate="<%=sumbitdate%>";--%>
+    <%--var handlesir="<%=handlesir%>";--%>
+    <%--var respone="<%=respone%>";--%>
+    <%--var detailfrom="<%=detailfrom%>";--%>
+    <%--var sumbitto="<%=sumbitto%>";--%>
+    <%--//alert(d);--%>
+    var s="";
     for(var k in clientrequest) {
+
+        s+="<label>"+k+":</label>"+"<p>"+clientrequest[k]+"</p>";
         console.log(k);
         console.log(clientrequest[k]);
     }
+    $( "#workdetail" ).html(s);
 })
 </script>
 <body>
 
-<form id="showcasedetail" method="post" action="" onsubmit="">
+<%--<form id="showcasedetail" method="post" action="" onsubmit="">--%>
+<form id="showcasedetail">
     <fieldset>
         <legend>案件信息:</legend>
         <ol id="caseinfo">
             <li>
-                <label for="caseid">案件编号：</label>
-                <input id="caseid" name="caseid" type="text" value="<%=caseid%>" readonly>
+                <%--<label for="caseid">案件编号：</label>--%>
+                <label>案件编号：</label>
+                <p><%=caseid%></p>
+                <%--<input id="caseid" name="caseid" type="text" value="<%=caseid%>" readonly>--%>
             </li>
             <li>
-                <label for="casename">案件名称:</label>
-                <input id="casename" name="casename" type="text" value="<%=casename%>" readonly>
+                <%--<label for="casename">案件名称:</label>--%>
+                <label>案件名称:</label>
+                    <p><%=casename%></p>
+                <%--<input id="casename" name="casename" type="text" value="<%=casename%>" readonly>--%>
             </li>
             <li>
-                <label for="casedetail">简要案情:</label>
-                <textarea id="casedetail" cols="50" name="casedetail" rows="10"  readonly><%=casedetail%></textarea>
+                <%--<label for="casedetail">简要案情:</label>--%>
+                <label>简要案情:</label>
+                    <p><%=casedetail%></p>
+                <%--<textarea id="casedetail" cols="50" name="casedetail" rows="10"  readonly><%=casedetail%></textarea>--%>
             </li>
             <li>
-                <label for="caseregno">立案决定书：</label>
-                <input id="caseregno" name="caseregno" type="text" value="<%=caseregno%>" readonly>
-                <a href="<%=host%><%=caseregfilename%>" id="caseregnofile" class="btn btn-info" target="_blank">点击查看文书</a>
+                <label>立案决定书：</label>
+                <%--<p><%=caseregno%></p>--%>
+                <%--<label for="caseregno">立案决定书：</label>--%>
+                <%--<input id="caseregno" name="caseregno" type="text" value="<%=caseregno%>" readonly>--%>
+                <%--<a href="<%=host%><%=caseregfilename%>" id="caseregnofile" class="btn btn-info" target="_blank">点击查看文书</a>--%>
+                <a href="<%=host%><%=caseregfilename%>" target="_blank"><%=caseregno%></a>
             </li>
             <%--<li>--%>
                 <%--<label for="caseregfile">上传文书:</label>--%>
@@ -113,8 +129,10 @@ $(document).ready(function () {
         <legend>配侦详情:</legend>
         <%--<button type="button" class="center-block" id="morerequest" onclick="add()">添加配侦内容</button>--%>
         <%--<a href="#" id="morerequest" class="btn btn-info">添加配侦线索</a></span></p><p style="color: red">最多添加10个</p>--%>
-        <ol id="workdetail">
+        <ol>
+            <li id="workdetail">
 
+            </li>
         </ol>
 
     </fieldset>
@@ -122,8 +140,22 @@ $(document).ready(function () {
         <legend>线索来源:</legend>
         <ol>
             <li>
-                <label for="detailfrom">线索来源:</label>
-                <textarea id="detailfrom" cols="50" readonly name="detailfrom" rows="3"><%=casedetail%></textarea>
+                <label>线索来源:</label>
+                <p><%=casedetail%></p>
+                <%--<label for="detailfrom">线索来源:</label>--%>
+                <%--<textarea id="detailfrom" cols="50" readonly name="detailfrom" rows="3"><%=casedetail%></textarea>--%>
+
+            </li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend>受理配侦单位:</legend>
+        <ol>
+            <li>
+                <label>受理配侦单位:</label>
+                <p><%=sumbitto%></p>
+                <%--<label for="sumbittodepartment">受理配侦单位:</label>--%>
+                <%--<textarea id="sumbittodepartment" cols="50" readonly name="sumbittodepartment" rows="3"><%=sumbitto%></textarea>--%>
 
             </li>
         </ol>
@@ -133,6 +165,8 @@ $(document).ready(function () {
         <ol>
             <li>
                 <label for="station">所属分局：</label>
+                <%--<label for="station">所属分局：</label>--%>
+                <%--<select name="station" id="station" size="1" required>--%>
                 <select name="station" id="station" size="1" required>
                     <option value="玉环市公安局">玉环市公安局</option>
                 </select>
@@ -151,12 +185,16 @@ $(document).ready(function () {
         <ol>
 
             <li>
-                <label for="caseby">经办民警:</label>
-                <input id="caseby" name="caseby" type="text" readonly value="<%=caseby%>" >
+                <label>经办民警:</label>
+                <p><%=caseby%></p>
+                <%--<label for="caseby">经办民警:</label>--%>
+                <%--<input id="caseby" name="caseby" type="text" readonly value="<%=caseby%>" >--%>
             </li>
             <li>
-                <label for="officerphone">民警电话:</label>
-                <input id="officerphone" name="caseby" type="text" readonly value="<%=officerphone%>" >
+                <label>民警电话:</label>
+                <p><%=officerphone%></p>
+                <%--<label for="officerphone">民警电话:</label>--%>
+                <%--<input id="officerphone" name="caseby" type="text" readonly value="<%=officerphone%>" >--%>
             </li>
 
         </ol>
@@ -182,13 +220,13 @@ $(document).ready(function () {
             </li>
             <li>
                 <label for="accesscode">审批码:</label>
-                <input id="accesscode" name="caseby" type="text" placeholder="输入4位授权码" >
+                <input id="accesscode" name="accesscode" type="text" placeholder="输入4位授权码" >
                 <p style="color: red">在每一级的审核中，都会有一个相应授权码发送到该次审核人员处</p>
             </li>
         </ol>
     </fieldset>
     <fieldset>
-        <button type="submit" class="center-block">提交案件</button>
+        <button type="button" class="center-block">提交案件</button>
     </fieldset>
 </form>
 

@@ -317,7 +317,7 @@
     </fieldset>
 
     <fieldset>
-        <legend>单位信息:</legend>
+        <legend>提交配侦单位信息:</legend>
         <ol>
             <li>
                 <label for="station">所属分局：</label>

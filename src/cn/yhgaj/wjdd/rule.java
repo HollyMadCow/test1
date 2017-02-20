@@ -188,7 +188,7 @@ public class rule {
                              count = rs1.getInt(1);
                              if (count>0){
                                  sqltempstr=String.format("SELECT caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
-                                         "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom " +
+                                         "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto " +
                                          "FROM `case`where id=%s",id);
                              }else {
                                  sqlstr=null;
