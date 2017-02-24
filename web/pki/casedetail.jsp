@@ -219,17 +219,17 @@ $(document).ready(function () {
                 <label >网警初审:</label>
                 <a>未审核</a>
                 &nbsp&nbsp&nbsp
-                <a href="#"  class="btn btn-info">同意</a>
+                <a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>
                 &nbsp&nbsp&nbsp
-                <a href="#"  class="btn btn-danger">退回补充资料</a>
+                <a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>
             </li>
             <li>
                 <label >局领导审批:</label>
                 <a>未审核</a>
                 &nbsp&nbsp&nbsp
-                <a href="#"  class="btn btn-info">同意</a>
+                <a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>
                 &nbsp&nbsp&nbsp
-                <a href="#"  class="btn btn-danger">退回补充资料</a>
+                <a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>
             </li>
             <li>
                 <label for="accesscode">审批码:</label>
