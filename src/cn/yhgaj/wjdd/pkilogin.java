@@ -49,12 +49,12 @@ public class pkilogin extends HttpServlet{
         String area=null;
         String realname = null;
         String email = null;
-
+        String usertype=null;
         try{
 
             conn = DatabaseConnection.getConnection();
             stmt = conn.createStatement();
-            String sql=String.format("select username,userid,longcellphone,shortcellphone,area,realname,email from USER WHERE userid='%s'",useridfromkey);
+            String sql=String.format("select username,userid,longcellphone,shortcellphone,area,usertype,realname,email from USER WHERE userid='%s'",useridfromkey);
             rs = stmt.executeQuery(sql);
             while(rs.next()){
                 username = rs.getString("username");
@@ -64,6 +64,7 @@ public class pkilogin extends HttpServlet{
                 area = rs.getString("area");
                 realname = rs.getString("realname");
                 email = rs.getString("email");
+                usertype = rs.getString("usertype");
 
             }
         }catch(Exception e){
@@ -87,6 +88,7 @@ public class pkilogin extends HttpServlet{
         session.setAttribute("area",area);
         session.setAttribute("realname",realname);
         session.setAttribute("email",email);
+        session.setAttribute("usertype",usertype);
 //todo 需要设置登录状态，登录类型等等，用来用来给其他页面验证是否已经登录，并将用户信息写入session
 //        request.setAttribute("username", username);
 //        request.setAttribute("userid", userid);

@@ -92,7 +92,6 @@
         <url-pattern>/servlet/ndp/mybusiness.do</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>casedetail</servlet-name>
         <servlet-class>cn.yhgaj.wjdd.casedetail</servlet-class>
@@ -102,4 +101,5 @@
         <servlet-name>casedetail</servlet-name>
         <url-pattern>/servlet/ndp/casedetail.do</url-pattern>
     </servlet-mapping>
+
 </web-app>

@@ -25,7 +25,11 @@ String handlesir=(String) request.getAttribute("handlesir");;
 String respone=(String) request.getAttribute("respone");
 String detailfrom=(String) request.getAttribute("detailfrom");
 String sumbitto=(String) request.getAttribute("sumbitto");
+String sumbitbyid=(String) request.getAttribute("sumbitbyid");
 String host="http://172.16.210.251/uploadimage/";
+String usertypefromsession=(String) session.getAttribute("usertype");
+String useridfromsession=(String)session.getAttribute("useridfromdatabase");
+String areafromsession = (String) session.getAttribute("area");
 
 %>
 
@@ -56,20 +60,96 @@ String host="http://172.16.210.251/uploadimage/";
 $(document).ready(function () {
     <%--var caseid="<%=caseid%>";--%>
     var clientrequest=<%=clientrequest%>;
-    <%--var casename="<%=casename%>";--%>
-    <%--var casedetail="<%=casedetail%>";--%>
-    <%--var caseregno="<%=caseregno%>";--%>
-    <%--var caseregfilename="<%=caseregfilename%>";--%>
-    <%--var area="<%=area%>";--%>
-    <%--var caseby="<%=caseby%>";--%>
-    <%--var officerphone="<%=officerphone%>";--%>
-    <%--var state="<%=state%>";--%>
-    <%--var sumbitdate="<%=sumbitdate%>";--%>
-    <%--var handlesir="<%=handlesir%>";--%>
-    <%--var respone="<%=respone%>";--%>
-    <%--var detailfrom="<%=detailfrom%>";--%>
-    <%--var sumbitto="<%=sumbitto%>";--%>
-    <%--//alert(d);--%>
+    var state="<%=state%>";
+    var sumbitbyid="<%=sumbitbyid%>";
+    var area="<%=area%>";
+    var sumbitto="<%=sumbitto%>";
+    var usertypefromsess="<%=usertypefromsession%>";
+    var useridfromsess="<%=useridfromsession%>";
+    var areafromsess="<%=areafromsession%>";
+    var s2="";
+
+    if (state=="提交")
+    {
+        s2="等待办案单位领导审核";
+        $( "#casestate" ).html(s2);
+        if(area == areafromsess && usertypefromsess=="办案单位审核人员")
+        {
+            var s3=null;
+            s3="<label >办案单位领导审批:</label>"+ "<a>未审核</a>"+
+                "&nbsp&nbsp&nbsp"+
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-info\">同意</a>"+
+                " &nbsp&nbsp&nbsp"+
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">退回补充资料</a>";
+            $( "#statestage1" ).html(s3);
+        }
+
+    }
+    if (state=="待受初审")
+    {
+        s2="等待受理单位初审";
+        $( "#casestate" ).html(s2);
+        if(sumbitto == areafromsess && usertypefromsess=="受理单位初审人员")
+        {
+            var s3=null;
+            s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
+            $( "#statestage1" ).html(s3);
+            var s4=null;
+            s4="<label >受理单位初审:</label>"+
+                "<a>未审核</a>"+
+                "&nbsp&nbsp&nbsp"+
+                "<a href=\"javascript:void(0)\" class=\"btn btn-info\">同意</a>"+
+                "&nbsp&nbsp&nbsp"+
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">退回补充资料</a>";
+            $( "#statestage2" ).html(s4);
+
+        }
+
+
+    }
+    if (state=="待局审")
+    {
+        s2="等待局领导审核";
+        $( "#casestate" ).html(s2);
+
+
+    }
+    if (state=="待分民警")
+    {
+        s2="等待分配到配侦民警";
+        $( "#casestate" ).html(s2);
+
+
+    }
+    if (state=="配侦中")
+    {
+        s2="已在配侦中";
+
+
+    }
+
+    if (state=="已配侦")
+    {
+        s2="已配侦，等待办案单位反馈是否有抓获";
+
+
+    }
+    if (state=="已反馈")
+    {
+        s2="办案单位已反馈";
+
+
+    }
+
+    if (state=="已关闭")
+    {
+        s2="该案件已办结关闭";
+
+
+    }
+
+
+
     var s="";
     for(var k in clientrequest) {
 
@@ -78,6 +158,8 @@ $(document).ready(function () {
         console.log(clientrequest[k]);
     }
     $( "#workdetail" ).html(s);
+
+
 })
 </script>
 <body>
@@ -203,33 +285,33 @@ $(document).ready(function () {
         <legend>案件状态：</legend>
         <ol>
             <li>
-                <label >审批状态:</label>
-                <a><%=state%></a>
+                <label>审批状态:</label>
+                <a id="casestate"><%=state%></a>
             </li>
-            <li>
-                <label >所领导审批:</label>
-                <a>未审核</a>
-                <%--<button type="button" class="center-block" style="">提交案件</button>--%>
-                &nbsp&nbsp&nbsp
-                <a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>
-                &nbsp&nbsp&nbsp
-                <a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>
+            <li id="statestage1">
+                <%--<label >所领导审批:</label>--%>
+                <%--<a>未审核</a>--%>
+                <%--&lt;%&ndash;<button type="button" class="center-block" style="">提交案件</button>&ndash;%&gt;--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
             </li>
-            <li>
-                <label >网警初审:</label>
-                <a>未审核</a>
-                &nbsp&nbsp&nbsp
-                <a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>
-                &nbsp&nbsp&nbsp
-                <a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>
+            <li id="statestage2">
+                <%--<label >网警初审:</label>--%>
+                <%--<a>未审核</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
             </li>
-            <li>
-                <label >局领导审批:</label>
-                <a>未审核</a>
-                &nbsp&nbsp&nbsp
-                <a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>
-                &nbsp&nbsp&nbsp
-                <a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>
+            <li id="statestage3">
+                <%--<label >局领导审批:</label>--%>
+                <%--<a>未审核</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
             </li>
             <li>
                 <label for="accesscode">审批码:</label>
