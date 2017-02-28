@@ -89,11 +89,12 @@ $(document).ready(function () {
     {
         s2="等待受理单位初审";
         $( "#casestate" ).html(s2);
+        var s3=null;
+        s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
+        $( "#statestage1" ).html(s3);
         if(sumbitto == areafromsess && usertypefromsess=="受理单位初审人员")
         {
-            var s3=null;
-            s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
-            $( "#statestage1" ).html(s3);
+
             var s4=null;
             s4="<label >受理单位初审:</label>"+
                 "<a>未审核</a>"+
@@ -316,6 +317,7 @@ $(document).ready(function () {
             <li>
                 <label for="accesscode">审批码:</label>
                 <input id="accesscode" name="accesscode" type="text" placeholder="输入4位授权码" >
+                <a href="javascript:void(0)" class="btn btn-info">应用授权码</a>
                 <p style="color: red">在每一级的审核中，都会有一个相应授权码发送到该次审核人员处</p>
             </li>
         </ol>

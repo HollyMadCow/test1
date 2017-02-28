@@ -270,7 +270,7 @@
                 <input id="caseregno" name="caseregno" type="text" placeholder="文书编号" required>
             </li>
             <li>
-                <label for="caseregfile">上传文书:</label>
+                <label for="caseregfile">立案决定书:</label>
                     <%--<label>上传文书:</label>--%>
                 <%--<input id="caseregfile" type="file" class="file-loading" multiple accept="image/*" required>--%>
                 <input id="caseregfile"  name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*">
