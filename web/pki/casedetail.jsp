@@ -30,6 +30,8 @@ String host="http://172.16.210.251/uploadimage/";
 String usertypefromsession=(String) session.getAttribute("usertype");
 String useridfromsession=(String)session.getAttribute("useridfromdatabase");
 String areafromsession = (String) session.getAttribute("area");
+String departmentfromsess =(String) session.getAttribute("department");
+
 
 %>
 
@@ -57,6 +59,17 @@ String areafromsession = (String) session.getAttribute("area");
     <script src="/js/jquery.form.js"></script>
 </head>
 <script>
+    function in_array(needle, haystack) {
+        var i = 0, n = haystack.length;
+
+        for (;i < n;++i)
+            if (haystack[i] === needle)
+                return true;
+
+        return false;
+    }
+</script>
+<script>
 $(document).ready(function () {
     <%--var caseid="<%=caseid%>";--%>
     var clientrequest=<%=clientrequest%>;
@@ -67,6 +80,7 @@ $(document).ready(function () {
     var usertypefromsess="<%=usertypefromsession%>";
     var useridfromsess="<%=useridfromsession%>";
     var areafromsess="<%=areafromsession%>";
+    var departmentfromsess="<%=departmentfromsess%>";
     var s2="";
 
     if (state=="提交")
@@ -92,7 +106,7 @@ $(document).ready(function () {
         var s3=null;
         s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
         $( "#statestage1" ).html(s3);
-        if(sumbitto == areafromsess && usertypefromsess=="受理单位初审人员")
+        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
         {
 
             var s4=null;
@@ -117,6 +131,18 @@ $(document).ready(function () {
         $( "#statestage1" ).html(s3);
         s4="<label >受理单位领导审批:</label>"+ "<a>已审核</a>";
         $( "#statestage2" ).html(s4);
+        var areaarry;
+        areaarry=departmentfromsess.split(";");
+        console.log(areaarry);
+        if (in_array(sumbitto,areaarry) && usertypefromsess =="局审核人员"){
+            var s5="<label >分管领导审核:</label>"+
+                "<a>未审核</a>"+
+                "&nbsp&nbsp&nbsp"+
+                "<a href=\"javascript:void(0)\" class=\"btn btn-info\">同意</a>"+
+                "&nbsp&nbsp&nbsp"+
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">退回补充资料</a>";
+            $( "#statestage3" ).html(s5);
+        }
 
 
 
@@ -126,6 +152,21 @@ $(document).ready(function () {
     {
         s2="等待分配到配侦民警";
         $( "#casestate" ).html(s2);
+        s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
+        $( "#statestage1" ).html(s3);
+        s4="<label >受理单位领导审批:</label>"+ "<a>已审核</a>";
+        $( "#statestage2" ).html(s4);
+        s5="<label >分管领导审批:</label>"+ "<a>已审核</a>";
+        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
+        {
+
+            var s4=null;
+            s4="<label >受理单位分配:</label>"+
+                "<a>未分配</a>"+
+                "&nbsp&nbsp&nbsp";
+            $( "#statestage2" ).html(s4);
+
+        }
 
 
     }
@@ -157,7 +198,7 @@ $(document).ready(function () {
     }
 
 
-
+///输出配侦请求中添加的如QQ等东西
     var s="";
     for(var k in clientrequest) {
 
@@ -314,6 +355,22 @@ $(document).ready(function () {
                 <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
             </li>
             <li id="statestage3">
+                <%--<label >局领导审批:</label>--%>
+                <%--<a>未审核</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+            </li>
+            <li id="statestage4">
+                <%--<label >局领导审批:</label>--%>
+                <%--<a>未审核</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
+                <%--&nbsp&nbsp&nbsp--%>
+                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+            </li>
+            <li id="statestage5">
                 <%--<label >局领导审批:</label>--%>
                 <%--<a>未审核</a>--%>
                 <%--&nbsp&nbsp&nbsp--%>
