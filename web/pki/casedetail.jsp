@@ -113,6 +113,13 @@ $(document).ready(function () {
         s2="等待局领导审核";
         $( "#casestate" ).html(s2);
 
+        s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
+        $( "#statestage1" ).html(s3);
+        s4="<label >受理单位领导审批:</label>"+ "<a>已审核</a>";
+        $( "#statestage2" ).html(s4);
+
+
+
 
     }
     if (state=="待分民警")
