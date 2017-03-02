@@ -165,6 +165,9 @@ $(document).ready(function () {
                 "<a>未分配</a>"+
                 "&nbsp&nbsp&nbsp";
             $( "#statestage2" ).html(s4);
+            $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitbyid,function (data) {
+                console.log(data);
+            })
 
         }
 
