@@ -1,5 +1,6 @@
 package cn.yhgaj.wjdd;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -28,10 +29,10 @@ public class listuser extends HttpServlet {
         //ResultSet countrs = null;
         PrintWriter out = response.getWriter();
         JSONObject obj = new JSONObject();
+        JSONArray array=new JSONArray();
         String sumbitto=request.getParameter("sumbitto");
         String stringsql = "SELECT realname FROM user WHERE area=? AND usertype=?";
         PreparedStatement pstmt=null;
-
 
         try{
             conn = DatabaseConnection.getConnection();
@@ -44,22 +45,25 @@ public class listuser extends HttpServlet {
             int columnCount = rsmd.getColumnCount();
 
             while(rs.next()){
-               // JSONObject jsonObj = new JSONObject();
-                for(int i=1;i<columnCount+1;i++)
-                {
+                JSONObject jsonObj = new JSONObject();
+//                array.put("姓名：",rs.getString("realname"));
+                jsonObj.put("姓名：",rs.getString("realname"));
+//                for(int i=1;i<columnCount+1;i++)
+//                {
+//
+//                    String columnName =rsmd.getColumnLabel(i);
+//                    String value = rs.getString(columnName);
+//                    jsonObj.put(columnName, value);
 
-                    String columnName =rsmd.getColumnLabel(i);
-                    String value = rs.getString(columnName);
-                    obj.put(columnName, value);
-
-                }
-                //array.put(jsonObj);
+//                }
+                array.put(jsonObj);
+                //obj.put(jsonObj);
 
             }
             //obj.put("count",count);
            // obj.put("data",array);
-            //out.println(array);
-            out.println(obj);
+            out.println(array);
+            //out.println(obj);
         }catch (Exception e)
         {
             e.printStackTrace();

@@ -70,6 +70,35 @@ String departmentfromsess =(String) session.getAttribute("department");
     }
 </script>
 <script>
+    function listuser() {
+        var sumbitto="<%=sumbitto%>";
+        var list;
+        list="<select name=\"userarea\" size=\"1\" id=\"listuser\">";
+        $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitto,function (data) {
+                //console.log(eval(data));
+                //获取可配侦人员名单，并插入到网页
+                var array=eval(data);
+                for(var i=0;i<array.length;i++)
+                {
+                    //console.log(array[i]);
+                    for(var k in array[i])
+                    {
+                        list+="<option value=\""+array[i][k]+"\">"+array[i][k]+"</option>";
+                        //console.log(array[i][k]);
+                    }
+                }
+                list+="</select>";
+
+
+                //console.log(data);
+            });
+        $( "#statestage5" ).html(list);
+        console.log(list);
+
+    }
+
+</script>
+<script>
 $(document).ready(function () {
     <%--var caseid="<%=caseid%>";--%>
     var clientrequest=<%=clientrequest%>;
@@ -82,6 +111,7 @@ $(document).ready(function () {
     var areafromsess="<%=areafromsession%>";
     var departmentfromsess="<%=departmentfromsess%>";
     var s2="";
+
 
     if (state=="提交")
     {
@@ -148,28 +178,57 @@ $(document).ready(function () {
 
 
     }
-    if (state=="待分民警")
-    {
-        s2="等待分配到配侦民警";
-        $( "#casestate" ).html(s2);
-        s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
-        $( "#statestage1" ).html(s3);
-        s4="<label >受理单位领导审批:</label>"+ "<a>已审核</a>";
-        $( "#statestage2" ).html(s4);
-        s5="<label >分管领导审批:</label>"+ "<a>已审核</a>";
+    if (state=="待分民警") {
+        s2 = "等待分配到配侦民警";
+        $("#casestate").html(s2);
+        s3 = "<label >办案单位领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage1").html(s3);
+        s4 = "<label >受理单位领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage2").html(s4);
+        s5 = "<label >分管领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage3").html(s5);
         if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
         {
 
-            var s4=null;
-            s4="<label >受理单位分配:</label>"+
-                "<a>未分配</a>"+
-                "&nbsp&nbsp&nbsp";
-            $( "#statestage2" ).html(s4);
-            $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitbyid,function (data) {
-                console.log(data);
-            })
-
+            var s6="<label >受理单位分配:</label>"+
+                "<a>待分配</a>"+
+                "&nbsp&nbsp&nbsp"+
+                    "<a href=\"javascript:void(0)\" onclick=\"listuser()\" class=\"btn btn-danger\">点击分配</a>";
+            $( "#statestage4" ).html(s6);
         }
+//        var s6;
+//        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
+//        {
+//
+//
+//            s6="<label >受理单位分配:</label>"+
+//                "<a>待分配</a>"+
+//                "&nbsp&nbsp&nbsp"+
+//                "<select name=\"userarea\" size=\"1\" id=\"listuser\">";
+//
+//            $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitto,function (data) {
+//                //console.log(eval(data));
+//                //获取可配侦人员名单，并插入到网页
+//                var array=eval(data);
+//                for(var i=0;i<array.length;i++)
+//                {
+//                    //console.log(array[i]);
+//                    for(var k in array[i])
+//                    {
+//                        s6+="<option value=\""+array[i][k]+"\">"+array[i][k]+"</option>";
+//                        console.log(array[i][k]);
+//                    }
+//                }
+//                s6+="</select>";
+//                console.log(s6);
+//
+//                //console.log(data);
+//            });
+//
+//
+//            $( "#statestage4" ).html(s6);
+//
+//    }
 
 
     }
@@ -374,7 +433,16 @@ $(document).ready(function () {
                 <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
             </li>
             <li id="statestage5">
+                <%--<label >受理单位分配:</label><a>待分配</a>&nbsp&nbsp&nbsp<select name="userares" size="1"><label >分管领导审批:</label><a>已审核</a><option value="张三">张三</option><option value="李四">李四</option></select>--%>
                 <%--<label >局领导审批:</label>--%>
+                    <%--<label >受理单位分配:</label>--%>
+                    <%--<a>待分配</a>--%>
+                    <%--&nbsp&nbsp&nbsp--%>
+                    <%--<select name="userares" size="1">--%>
+                        <%--<option value="张三">张三</option>--%>
+                        <%--<option value="李四">李四</option>--%>
+                    <%--</select>--%>
+                    <%--<label >受理单位分配:</label><a>待分配</a>&nbsp&nbsp&nbsp<select name="userares" size="1"><label >分管领导审批:</label><a>已审核</a><option value="张三">张三</option><option value="李四">李四</option></select>--%>
                 <%--<a>未审核</a>--%>
                 <%--&nbsp&nbsp&nbsp--%>
                 <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>

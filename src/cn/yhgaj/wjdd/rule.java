@@ -62,7 +62,7 @@ public class rule {
                         sqltempstr = String.format("SELECT * from `case` WHERE area='%s' ORDER BY sumbitdate DESC",area);
 
                         break;
-                    case  "受理单位初审人员":
+                    case  "受理单位审核人员":
                         sqltempstr = String.format("SELECT * FROM `case` WHERE state!='提交'ORDER BY sumbitdate DESC");
 
                         break;
@@ -121,7 +121,7 @@ public class rule {
                         sqltempstr = String.format("SELECT count(caseid) from `case` WHERE area='%s'",area);
 
                         break;
-                    case  "受理单位初审人员":
+                    case  "受理单位审核人员":
                         sqltempstr = String.format("SELECT count(caseid) FROM `case` WHERE state!='提交'");
 
                         break;
@@ -201,7 +201,7 @@ public class rule {
                                 "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto,sumbitbyid " +
                                 "FROM `case`where id=%s and area='%s'",id,area);
                         break;
-                    case  "受理单位初审人员":
+                    case  "受理单位审核人员":
 //                        sqltempstr = String.format("SELECT * FROM `case` WHERE state!='提交'ORDER BY sumbitdate DESC");
                         sqltempstr=String.format("SELECT caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
                                 "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto,sumbitbyid " +
