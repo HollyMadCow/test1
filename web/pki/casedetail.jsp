@@ -187,48 +187,50 @@ $(document).ready(function () {
         $("#statestage2").html(s4);
         s5 = "<label >分管领导审批:</label>" + "<a>已审核</a>";
         $("#statestage3").html(s5);
-        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
-        {
-
-            var s6="<label >受理单位分配:</label>"+
-                "<a>待分配</a>"+
-                "&nbsp&nbsp&nbsp"+
-                    "<a href=\"javascript:void(0)\" onclick=\"listuser()\" class=\"btn btn-danger\">点击分配</a>";
-            $( "#statestage4" ).html(s6);
-        }
-//        var s6;
 //        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
 //        {
 //
-//
-//            s6="<label >受理单位分配:</label>"+
+//            var s6="<label >受理单位分配:</label>"+
 //                "<a>待分配</a>"+
 //                "&nbsp&nbsp&nbsp"+
-//                "<select name=\"userarea\" size=\"1\" id=\"listuser\">";
-//
-//            $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitto,function (data) {
-//                //console.log(eval(data));
-//                //获取可配侦人员名单，并插入到网页
-//                var array=eval(data);
-//                for(var i=0;i<array.length;i++)
-//                {
-//                    //console.log(array[i]);
-//                    for(var k in array[i])
-//                    {
-//                        s6+="<option value=\""+array[i][k]+"\">"+array[i][k]+"</option>";
-//                        console.log(array[i][k]);
-//                    }
-//                }
-//                s6+="</select>";
-//                console.log(s6);
-//
-//                //console.log(data);
-//            });
-//
-//
+//                    "<a href=\"javascript:void(0)\" onclick=\"listuser()\" class=\"btn btn-danger\">点击分配</a>";
 //            $( "#statestage4" ).html(s6);
-//
-//    }
+//        }
+//        console.log(areafromsess);
+        var s6;
+        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
+        {
+
+
+            s6="<label >受理单位分配:</label>"+
+                "<a>待分配</a>"+
+                "&nbsp&nbsp&nbsp"+
+                "<select name=\"userarea\" size=\"1\" id=\"listuser\">";
+
+            $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitto,function (data) {
+                //console.log(eval(data));
+                //获取可配侦人员名单，并插入到网页
+                var array=eval(data);
+                for(var i=0;i<array.length;i++)
+                {
+                    //console.log(array[i]);
+                    for(var k in array[i])
+                    {
+                        s6+="<option value=\""+array[i][k]+"\">"+array[i][k]+"</option>";
+                        console.log(array[i][k]);
+                    }
+                }
+                s6+="</select>";
+                console.log(s6);
+
+                //console.log(data);
+                $( "#statestage4" ).html(s6);
+            });
+
+
+
+
+    }
 
 
     }
