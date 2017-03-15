@@ -187,7 +187,7 @@ public class rule {
                         if(rs1.next()){
                              count = rs1.getInt(1);
                              if (count>0){
-                                 sqltempstr=String.format("SELECT caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
+                                 sqltempstr=String.format("SELECT id,caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
                                          "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto,sumbitbyid " +
                                          "FROM `case`where id=%s",id);
                              }else {
@@ -197,13 +197,13 @@ public class rule {
                         break;
                     case "办案单位审核人员":
 //                        sqltempstr = String.format("SELECT * from `case` WHERE area='%s' ORDER BY sumbitdate DESC",area);
-                        sqltempstr=String.format("SELECT caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
+                        sqltempstr=String.format("SELECT id,caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
                                 "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto,sumbitbyid " +
                                 "FROM `case`where id=%s and area='%s'",id,area);
                         break;
                     case  "受理单位审核人员":
 //                        sqltempstr = String.format("SELECT * FROM `case` WHERE state!='提交'ORDER BY sumbitdate DESC");
-                        sqltempstr=String.format("SELECT caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
+                        sqltempstr=String.format("SELECT id,caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
                                 "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto,sumbitbyid " +
                                 "FROM `case`where id=%s",id);
 

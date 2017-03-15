@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 String clientrequest=(String)request.getAttribute("request");
+String id=(String)request.getAttribute("id");
 String caseid = (String) request.getAttribute("caseid");
 String casename=(String) request.getAttribute("casename");
 String casedetail=(String) request.getAttribute("casedetail");
@@ -102,6 +103,7 @@ String departmentfromsess =(String) session.getAttribute("department");
 $(document).ready(function () {
     <%--var caseid="<%=caseid%>";--%>
     var clientrequest=<%=clientrequest%>;
+    var id=<%=id%>;
     var state="<%=state%>";
     var sumbitbyid="<%=sumbitbyid%>";
     var area="<%=area%>";
@@ -124,7 +126,7 @@ $(document).ready(function () {
                 "&nbsp&nbsp&nbsp"+
                 "<a href=\"javascript:void(0)\"  class=\"btn btn-info\">同意</a>"+
                 " &nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">退回补充资料</a>";
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">通知补充资料</a>";
             $( "#statestage1" ).html(s3);
         }
 
@@ -145,7 +147,7 @@ $(document).ready(function () {
                 "&nbsp&nbsp&nbsp"+
                 "<a href=\"javascript:void(0)\" class=\"btn btn-info\">同意</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">退回补充资料</a>";
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">通知补充资料</a>";
             $( "#statestage2" ).html(s4);
 
         }
@@ -170,7 +172,7 @@ $(document).ready(function () {
                 "&nbsp&nbsp&nbsp"+
                 "<a href=\"javascript:void(0)\" class=\"btn btn-info\">同意</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">退回补充资料</a>";
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">通知补充资料</a>";
             $( "#statestage3" ).html(s5);
         }
 
@@ -221,6 +223,8 @@ $(document).ready(function () {
                     }
                 }
                 s6+="</select>";
+                s6+="&nbsp&nbsp&nbsp";
+                s6+="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"distribute()\">分配</a>";
                 console.log(s6);
 
                 //console.log(data);
@@ -236,8 +240,27 @@ $(document).ready(function () {
     }
     if (state=="配侦中")
     {
-        s2="已在配侦中";
+        s2="正在配侦中";
+        $("#casestate").html(s2);
+        s3 = "<label >办案单位领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage1").html(s3);
+        s4 = "<label >受理单位领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage2").html(s4);
+        s5 = "<label >分管领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage3").html(s5);
+        $.get("/servlet/ndp/getdissir.do?id="+id,function (data) {
+            //var array=data;
+            //console.log(data);
+            s6="<label >配侦人员分配:</label>" + "<a>已分配给："+data+"</a>";
+            $("#statestage4").html(s6);
+        });
 
+        if(sumbitto == areafromsess)
+        {
+            var s7="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"notify()\">配侦完毕点击通知侦办民警</a>";
+            $("#statestage5").html(s7);
+        }
+            //console.log(id);
 
     }
 
@@ -274,6 +297,16 @@ $(document).ready(function () {
 
 
 })
+</script>
+<script>
+    function distribute() {
+
+    }
+</script>
+<script>
+    function notify() {
+
+    }
 </script>
 <body>
 
@@ -435,6 +468,7 @@ $(document).ready(function () {
                 <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
             </li>
             <li id="statestage5">
+                <a href="javascript:void(0)" class="btn btn-info" onclick="distribute()">分配</a>
                 <%--<label >受理单位分配:</label><a>待分配</a>&nbsp&nbsp&nbsp<select name="userares" size="1"><label >分管领导审批:</label><a>已审核</a><option value="张三">张三</option><option value="李四">李四</option></select>--%>
                 <%--<label >局领导审批:</label>--%>
                     <%--<label >受理单位分配:</label>--%>

@@ -112,4 +112,34 @@
         <url-pattern>/servlet/ndp/listuser.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>distributecase</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.distributecase</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>distributecase</servlet-name>
+        <url-pattern>/servlet/ndp/distributecase.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>appliauthcode</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.appliauthcode</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appliauthcode</servlet-name>
+        <url-pattern>/servlet/ndp/appliauthcode.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getdissir</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.getdissir</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getdissir</servlet-name>
+        <url-pattern>/servlet/ndp/getdissir.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>
