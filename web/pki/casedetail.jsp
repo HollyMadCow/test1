@@ -225,7 +225,7 @@ $(document).ready(function () {
                 s6+="</select>";
                 s6+="&nbsp&nbsp&nbsp";
                 s6+="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"distribute()\">分配</a>";
-                console.log(s6);
+                //console.log(s6);
 
                 //console.log(data);
                 $( "#statestage4" ).html(s6);
@@ -435,55 +435,19 @@ $(document).ready(function () {
                 <a id="casestate"><%=state%></a>
             </li>
             <li id="statestage1">
-                <%--<label >所领导审批:</label>--%>
-                <%--<a>未审核</a>--%>
-                <%--&lt;%&ndash;<button type="button" class="center-block" style="">提交案件</button>&ndash;%&gt;--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+
             </li>
             <li id="statestage2">
-                <%--<label >网警初审:</label>--%>
-                <%--<a>未审核</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+
             </li>
             <li id="statestage3">
-                <%--<label >局领导审批:</label>--%>
-                <%--<a>未审核</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+
             </li>
             <li id="statestage4">
-                <%--<label >局领导审批:</label>--%>
-                <%--<a>未审核</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+
             </li>
             <li id="statestage5">
-                <a href="javascript:void(0)" class="btn btn-info" onclick="distribute()">分配</a>
-                <%--<label >受理单位分配:</label><a>待分配</a>&nbsp&nbsp&nbsp<select name="userares" size="1"><label >分管领导审批:</label><a>已审核</a><option value="张三">张三</option><option value="李四">李四</option></select>--%>
-                <%--<label >局领导审批:</label>--%>
-                    <%--<label >受理单位分配:</label>--%>
-                    <%--<a>待分配</a>--%>
-                    <%--&nbsp&nbsp&nbsp--%>
-                    <%--<select name="userares" size="1">--%>
-                        <%--<option value="张三">张三</option>--%>
-                        <%--<option value="李四">李四</option>--%>
-                    <%--</select>--%>
-                    <%--<label >受理单位分配:</label><a>待分配</a>&nbsp&nbsp&nbsp<select name="userares" size="1"><label >分管领导审批:</label><a>已审核</a><option value="张三">张三</option><option value="李四">李四</option></select>--%>
-                <%--<a>未审核</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-info">同意</a>--%>
-                <%--&nbsp&nbsp&nbsp--%>
-                <%--<a href="javascript:void(0)" disabled="true" class="btn btn-danger">退回补充资料</a>--%>
+
             </li>
             <li>
                 <label for="accesscode">审批码:</label>
