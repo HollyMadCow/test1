@@ -31,7 +31,7 @@ public class listuser extends HttpServlet {
         JSONObject obj = new JSONObject();
         JSONArray array=new JSONArray();
         String sumbitto=request.getParameter("sumbitto");
-        String stringsql = "SELECT realname FROM user WHERE area=? AND usertype=?";
+        String stringsql = "SELECT distinct realname FROM user WHERE area=? AND usertype=?";
         PreparedStatement pstmt=null;
 
         try{

@@ -94,7 +94,7 @@ String departmentfromsess =(String) session.getAttribute("department");
                 //console.log(data);
             });
         $( "#statestage5" ).html(list);
-        console.log(list);
+        //console.log(list);
 
     }
 
@@ -108,6 +108,7 @@ $(document).ready(function () {
     var sumbitbyid="<%=sumbitbyid%>";
     var area="<%=area%>";
     var sumbitto="<%=sumbitto%>";
+    //console.log(sumbitto);
     var usertypefromsess="<%=usertypefromsession%>";
     var useridfromsess="<%=useridfromsession%>";
     var areafromsess="<%=areafromsession%>";
@@ -219,12 +220,12 @@ $(document).ready(function () {
                     for(var k in array[i])
                     {
                         s6+="<option value=\""+array[i][k]+"\">"+array[i][k]+"</option>";
-                        console.log(array[i][k]);
+                        //console.log(array[i][k]);
                     }
                 }
                 s6+="</select>";
                 s6+="&nbsp&nbsp&nbsp";
-                s6+="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"distribute()\">分配</a>";
+                s6+="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" id=\"disbtn\" onclick=\"distribute()\">分配</a>";
                 //console.log(s6);
 
                 //console.log(data);
@@ -266,23 +267,36 @@ $(document).ready(function () {
 
     if (state=="已配侦")
     {
-        s2="已配侦，等待办案单位反馈是否有抓获";
+        s2="已配侦，请联系配侦民警。";
+        $("#casestate").html(s2);
+        s3 = "<label >办案单位领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage1").html(s3);
+        s4 = "<label >受理单位领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage2").html(s4);
+        s5 = "<label >分管领导审批:</label>" + "<a>已审核</a>";
+        $("#statestage3").html(s5);
+        $.get("/servlet/ndp/getdissir.do?id="+id,function (data) {
+            //var array=data;
+            //console.log(data);
+            s6="<label >配侦人员分配:</label>" + "<a>已分配给："+data+"</a>";
+            $("#statestage4").html(s6);
+        });
 
 
     }
-    if (state=="已反馈")
-    {
-        s2="办案单位已反馈";
-
-
-    }
-
-    if (state=="已关闭")
-    {
-        s2="该案件已办结关闭";
-
-
-    }
+//    if (state=="已反馈")
+//    {
+//        s2="办案单位已反馈";
+//
+//
+//    }
+//
+//    if (state=="已关闭")
+//    {
+//        s2="该案件已办结关闭";
+//
+//
+//    }
 
 
 ///输出配侦请求中添加的如QQ等东西
@@ -292,6 +306,7 @@ $(document).ready(function () {
         s+="<label>"+k+":</label>"+"<p>"+clientrequest[k]+"</p>";
         console.log(k);
         console.log(clientrequest[k]);
+
     }
     $( "#workdetail" ).html(s);
 
@@ -300,6 +315,22 @@ $(document).ready(function () {
 </script>
 <script>
     function distribute() {
+        var id=<%=id%>;
+        var obj = document.getElementById("listuser");
+        //var objbtn = document.getElementById("disbtn");
+//        document.getElementById("disbtn").disabled=true;
+        var index = obj.selectedIndex;
+        var value = obj.options[index].value;
+        $.get("/servlet/ndp/distributecase.do?id="+id+"&handlesir="+value,function (data) {
+            //var array=data;
+            //console.log(data);
+            console.log(id);
+            console.log(value);
+            //document.getElementById("disbtn").disabled=false;
+
+//            console.log(data);
+        });
+
 
     }
 </script>
@@ -447,6 +478,12 @@ $(document).ready(function () {
 
             </li>
             <li id="statestage5">
+
+            </li>
+            <li id="statestage6">
+
+            </li>
+            <li id="statestage7">
 
             </li>
             <li>

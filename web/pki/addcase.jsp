@@ -44,7 +44,7 @@
                 language: 'zh', //设置语言
                 uploadUrl : uploadUrl,
 //                uploadUrl: "/servlet/uploadimg", //上传的地址
-                allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+                allowedFileExtensions: ['jpg', 'gif', 'png','zip','rar'],//接收的文件后缀
                 //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
                 uploadAsync: true, //默认异步上传
                 showUpload: true, //是否显示上传按钮
@@ -273,7 +273,7 @@
                 <label for="caseregfile">立案决定书:</label>
                     <%--<label>上传文书:</label>--%>
                 <%--<input id="caseregfile" type="file" class="file-loading" multiple accept="image/*" required>--%>
-                <input id="caseregfile"  name="caseregfile" type="file" data-show-caption="true" multiple accept="image/*">
+                <input id="caseregfile"  name="caseregfile" type="file" data-show-caption="true" multiple accept="*">
                     <%--<input type="file" data-show-caption="true" multiple accept="image/*">--%>
                 <input type="text" style="visibility: hidden" id="caseregfilename" name="caseregfilename">
 

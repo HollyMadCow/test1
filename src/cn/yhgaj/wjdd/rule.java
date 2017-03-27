@@ -209,7 +209,9 @@ public class rule {
 
                         break;
                     case "受理单位配侦人员":
-                        sqltempstr = String.format("SELECT * FROM `case` WHERE state!='提交'and state!='待网审'ORDER BY sumbitdate DESC");
+                        sqltempstr = String.format("SELECT id,caseid,casename,casedetail,caseregno,caseregfilename,request,area," +
+                                "caseby,officerphone,state,sumbitdate,handlesir,respone,detailfrom,sumbitto,sumbitbyid " +
+                                "FROM `case`where id=%s",id);
                         break;
                     case "局审核人员":
                         sqltempstr = String.format("SELECT * FROM `case` WHERE state='待局审'ORDER BY sumbitdate DESC ");
