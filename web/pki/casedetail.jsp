@@ -326,7 +326,8 @@ $(document).ready(function () {
             //console.log(data);
             console.log(id);
             console.log(value);
-            //document.getElementById("disbtn").disabled=false;
+            alert("已经分配");
+            document.getElementById("disbtn").style.display="none";
 
 //            console.log(data);
         });
