@@ -31,14 +31,15 @@ public class listuser extends HttpServlet {
         JSONObject obj = new JSONObject();
         JSONArray array=new JSONArray();
         String sumbitto=request.getParameter("sumbitto");
-        String stringsql = "SELECT distinct realname FROM user WHERE area=? AND usertype=?";
+        String stringsql = "SELECT distinct realname FROM user WHERE area=?";
+        //String stringsql = "SELECT distinct realname FROM user WHERE area=? AND usertype=?";
         PreparedStatement pstmt=null;
 
         try{
             conn = DatabaseConnection.getConnection();
             pstmt = conn.prepareStatement(stringsql);
             pstmt.setString(1,sumbitto);
-            pstmt.setString(2,"受理单位配侦人员");
+            //pstmt.setString(2,"受理单位配侦人员");
             rs=pstmt.executeQuery();
 
             ResultSetMetaData rsmd = rs.getMetaData();

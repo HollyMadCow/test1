@@ -36,7 +36,7 @@ String departmentfromsess =(String) session.getAttribute("department");
 
 %>
 
-<html>
+
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,11 +116,11 @@ $(document).ready(function () {
     var s2="";
 
 
-    if (state=="提交")
+    if (state==="提交")
     {
         s2="等待办案单位领导审核";
         $( "#casestate" ).html(s2);
-        if(area == areafromsess && usertypefromsess=="办案单位审核人员")
+        if(area === areafromsess && usertypefromsess==="办案单位审核人员")
         {
             var s3=null;
             s3="<label >办案单位领导审批:</label>"+ "<a>未审核</a>"+
@@ -132,14 +132,14 @@ $(document).ready(function () {
         }
 
     }
-    if (state=="待受初审")
+    if (state==="待受初审")
     {
         s2="等待受理单位初审";
         $( "#casestate" ).html(s2);
         var s3=null;
         s3="<label >办案单位领导审批:</label>"+ "<a>已审核</a>";
         $( "#statestage1" ).html(s3);
-        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
+        if(sumbitto === areafromsess && usertypefromsess==="受理单位审核人员")
         {
 
             var s4=null;
@@ -155,7 +155,7 @@ $(document).ready(function () {
 
 
     }
-    if (state=="待局审")
+    if (state==="待局审")
     {
         s2="等待局领导审核";
         $( "#casestate" ).html(s2);
@@ -167,7 +167,7 @@ $(document).ready(function () {
         var areaarry;
         areaarry=departmentfromsess.split(";");
         console.log(areaarry);
-        if (in_array(sumbitto,areaarry) && usertypefromsess =="局审核人员"){
+        if (in_array(sumbitto,areaarry) && usertypefromsess ==="局审核人员"){
             var s5="<label >分管领导审核:</label>"+
                 "<a>未审核</a>"+
                 "&nbsp&nbsp&nbsp"+
@@ -181,7 +181,7 @@ $(document).ready(function () {
 
 
     }
-    if (state=="待分民警") {
+    if (state==="待分民警") {
         s2 = "等待分配到配侦民警";
         $("#casestate").html(s2);
         s3 = "<label >办案单位领导审批:</label>" + "<a>已审核</a>";
@@ -201,7 +201,7 @@ $(document).ready(function () {
 //        }
 //        console.log(areafromsess);
         var s6;
-        if(sumbitto == areafromsess && usertypefromsess=="受理单位审核人员")
+        if(sumbitto === areafromsess && usertypefromsess ==="受理单位审核人员")
         {
 
 
@@ -239,8 +239,9 @@ $(document).ready(function () {
 
 
     }
-    if (state=="配侦中")
+    if (state==="配侦中")
     {
+        //var s6;
         s2="正在配侦中";
         $("#casestate").html(s2);
         s3 = "<label >办案单位领导审批:</label>" + "<a>已审核</a>";
@@ -256,16 +257,43 @@ $(document).ready(function () {
             $("#statestage4").html(s6);
         });
 
-        if(sumbitto == areafromsess)
+        if(sumbitto === areafromsess && usertypefromsess ==="受理单位审核人员")
         {
-            var s7="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"notify()\">配侦完毕点击通知侦办民警</a>";
+            var s8="<label >人员分配更改:</label>"+
+                "&nbsp&nbsp&nbsp"+
+                "<select name=\"userarea\" size=\"1\" id=\"listuser\">";
+
+            $.get("/servlet/ndp/listuser.do?sumbitto="+sumbitto,function (data) {
+                //console.log(eval(data));
+                //获取可配侦人员名单，并插入到网页
+                var array=eval(data);
+                for(var i=0;i<array.length;i++)
+                {
+                    //console.log(array[i]);
+                    for(var k in array[i])
+                    {
+                        s8+="<option value=\""+array[i][k]+"\">"+array[i][k]+"</option>";
+                        //console.log(array[i][k]);
+                    }
+                }
+                s8+="</select>";
+                s8+="&nbsp&nbsp&nbsp";
+                s8+="<a href=\"javascript:void(0)\" class=\"btn btn-danger\" id=\"disbtn\" onclick=\"distribute()\">分配</a>";
+
+                $( "#statestage6" ).html(s8);
+            });
+        }
+
+        if(sumbitto === areafromsess)
+        {
+            var s7="<label >配侦完毕通知:</label>"+"<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"notify()\">配侦完毕点击通知侦办民警</a>";
             $("#statestage5").html(s7);
         }
             //console.log(id);
 
     }
 
-    if (state=="已配侦")
+    if (state==="已配侦")
     {
         s2="已配侦，请联系配侦民警。";
         $("#casestate").html(s2);
@@ -327,7 +355,8 @@ $(document).ready(function () {
             console.log(id);
             console.log(value);
             alert("已经分配");
-            document.getElementById("disbtn").style.display="none";
+            window.location.reload();
+            //document.getElementById("disbtn").style.display="none";
 
 //            console.log(data);
         });
