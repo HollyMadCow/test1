@@ -142,4 +142,14 @@
         <url-pattern>/servlet/ndp/getdissir.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>notify</servlet-name>
+        <servlet-class>cn.yhgaj.wjdd.notify</servlet-class>
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>notify</servlet-name>
+        <url-pattern>/servlet/ndp/notify.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

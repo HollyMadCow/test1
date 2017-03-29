@@ -125,9 +125,9 @@ $(document).ready(function () {
             var s3=null;
             s3="<label >办案单位领导审批:</label>"+ "<a>未审核</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-info\">同意</a>"+
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-info\" onclick=\"notify(1)\">同意</a>"+
                 " &nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">通知补充资料</a>";
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\" onclick=\"notify(2)\">通知补充资料</a>";
             $( "#statestage1" ).html(s3);
         }
 
@@ -146,9 +146,9 @@ $(document).ready(function () {
             s4="<label >受理单位初审:</label>"+
                 "<a>未审核</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\" class=\"btn btn-info\">同意</a>"+
+                "<a href=\"javascript:void(0)\" class=\"btn btn-info\" onclick=\"notify(3)\">同意</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">通知补充资料</a>";
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\" onclick=\"notify(4)\">通知补充资料</a>";
             $( "#statestage2" ).html(s4);
 
         }
@@ -171,9 +171,9 @@ $(document).ready(function () {
             var s5="<label >分管领导审核:</label>"+
                 "<a>未审核</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\" class=\"btn btn-info\">同意</a>"+
+                "<a href=\"javascript:void(0)\" class=\"btn btn-info\" onclick=\"notify(5)\">同意</a>"+
                 "&nbsp&nbsp&nbsp"+
-                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\">通知补充资料</a>";
+                "<a href=\"javascript:void(0)\"  class=\"btn btn-danger\" onclick=\"notify(6)\">通知补充资料</a>";
             $( "#statestage3" ).html(s5);
         }
 
@@ -286,7 +286,7 @@ $(document).ready(function () {
 
         if(sumbitto === areafromsess)
         {
-            var s7="<label >配侦完毕通知:</label>"+"<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"notify()\">配侦完毕点击通知侦办民警</a>";
+            var s7="<label >配侦完毕通知:</label>"+"<a href=\"javascript:void(0)\" class=\"btn btn-danger\" onclick=\"notify(7)\">配侦完毕点击通知侦办民警</a>";
             $("#statestage5").html(s7);
         }
             //console.log(id);
@@ -365,7 +365,16 @@ $(document).ready(function () {
     }
 </script>
 <script>
-    function notify() {
+    function notify(n) {
+        var s="/servlet/ndp/notify.do?state="+n;
+//            $.get("/servlet/ndp/mybusiness.do?page=1&rows=20",function (data) {
+        $.get(s,function (data) {
+            window.location.reload();
+            //console.log(data);
+            //$("#mainboard").load("/pki/business.jsp",{"listcase":data,"page":p});
+            //console.log(data);
+        });
+        <%--$( "#mainboard" ).load("/pki/business.jsp",{"userid":'<%=userid%>'});--%>
 
     }
 </script>
